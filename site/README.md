@@ -1,17 +1,21 @@
 # OpenShokz landing site
 
-Static site — no build step. `index.html` lives at the top of this directory.
+Static site — no bundler. `index.html` lives at the top of this directory.
+PostHog analytics is generated into `analytics.js` from `site/.env` (see below).
 
 Local preview:
 
 ```sh
+cp site/.env.example site/.env   # add your PostHog project token
+python3 scripts/generate-site-analytics.py
 python3 -m http.server 8377 --directory site
 ```
 
 Deploys to GitHub Pages via `.github/workflows/pages.yml` on pushes that touch
-`site/`. The canonical URL everywhere (SEO tags, sitemap, Sparkle feed,
-cask homepage) is `https://danielsinclair.github.io/openshokz` — update those
-if a custom domain comes back.
+`site/`. The workflow generates `analytics.js` from the `PUBLIC_POSTHOG_PROJECT_TOKEN`
+secret in the `github-pages` environment before upload. The canonical URL everywhere
+(SEO tags, sitemap, Sparkle feed, cask homepage) is `https://danielsinclair.github.io/openshokz`
+— update those if a custom domain comes back.
 
 ## Glass
 

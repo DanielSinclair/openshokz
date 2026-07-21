@@ -32,3 +32,9 @@ OpenShokz/Resources/Binaries/ffmpeg
 AuthKey_*.p8
 .env
 .env.*
+!.env.example
+!**/.env.example
+site/.env
+
+# Site analytics (generated from site/.env)
+site/analytics.js

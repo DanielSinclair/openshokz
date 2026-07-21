@@ -3,7 +3,10 @@ name: Deploy site to GitHub Pages
 on:
   push:
     branches: [main]
-    paths: ["site/**"]
+    paths:
+      - "site/**"
+      - "scripts/generate-site-analytics.py"
+      - ".github/workflows/pages.yml"
   workflow_dispatch:
 
 permissions:
@@ -21,8 +24,15 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      PUBLIC_POSTHOG_API_HOST: https://us.i.posthog.com
+      PUBLIC_POSTHOG_PROJECT: openshokz
     steps:
       - uses: actions/checkout@v4
+      - name: Generate analytics.js
+        env:
+          PUBLIC_POSTHOG_PROJECT_TOKEN: ${{ secrets.PUBLIC_POSTHOG_PROJECT_TOKEN }}
+        run: python3 scripts/generate-site-analytics.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
