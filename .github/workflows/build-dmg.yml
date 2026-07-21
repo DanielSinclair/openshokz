@@ -1,0 +1,78 @@
+name: Build DMG
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  dmg:
+    name: Package DMG
+    runs-on: macos-15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_16.4.app/Contents/Developer || sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
+      - name: Install tools
+        run: brew install xcodegen
+
+      - name: Fetch bundled binaries
+        run: ./scripts/fetch-binaries.sh
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Import signing certificate (optional)
+        env:
+          MACOS_CERTIFICATE_P12_BASE64: ${{ secrets.MACOS_CERTIFICATE_P12_BASE64 }}
+          MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          if [ -z "${MACOS_CERTIFICATE_P12_BASE64:-}" ]; then
+            echo "No signing certificate secret — building unsigned DMG"
+            exit 0
+          fi
+          CERTIFICATE_PATH="$RUNNER_TEMP/certificate.p12"
+          KEYCHAIN_PATH="$RUNNER_TEMP/app-signing.keychain-db"
+          echo -n "$MACOS_CERTIFICATE_P12_BASE64" | base64 --decode -o "$CERTIFICATE_PATH"
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security import "$CERTIFICATE_PATH" -P "$MACOS_CERTIFICATE_PASSWORD" \
+            -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
+          security list-keychain -d user -s "$KEYCHAIN_PATH"
+          security find-identity -v -p codesigning "$KEYCHAIN_PATH"
+          IDENTITY=$(security find-identity -v -p codesigning "$KEYCHAIN_PATH" | awk -F'"' '/Developer ID Application/{print $2; exit}')
+          echo "CODESIGN_IDENTITY=$IDENTITY" >> "$GITHUB_ENV"
+
+      - name: Build DMG
+        env:
+          CONFIGURATION: Release
+        run: |
+          chmod +x scripts/package-dmg.sh
+          ./scripts/package-dmg.sh
+
+      - name: Checksums
+        run: shasum -a 256 dist/*.dmg | tee dist/checksums.txt
+
+      - name: Upload DMG artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenShokz-DMG
+          path: dist/*.dmg
+          if-no-files-found: error
+
+      - name: Attach DMG to GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.dmg
+            dist/checksums.txt
+          generate_release_notes: true

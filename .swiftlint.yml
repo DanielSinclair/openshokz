@@ -1,0 +1,32 @@
+# OpenShokz SwiftLint
+opt_in_rules:
+  - empty_count
+  - first_where
+  - last_where
+  - sorted_first_last
+  - toggle_bool
+  - contains_over_filter_count
+  - contains_over_filter_is_empty
+  - redundant_nil_coalescing
+  - toggle_bool
+
+disabled_rules:
+  - todo
+  - trailing_whitespace
+  - line_length
+  - type_body_length
+  - file_length
+  - function_body_length
+  - cyclomatic_complexity
+  - identifier_name
+  - unused_declaration
+  - unused_import
+
+excluded:
+  - build
+  - .build
+  - DerivedData
+  - OpenShokz/Resources/Binaries
+  - OpenShokz.xcodeproj
+
+analyzer_rules: []

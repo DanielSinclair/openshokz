@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenShokz icon candidates</title>
+  <meta name="robots" content="noindex">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background: #eef1f6;
+      color: #171b22;
+      padding: 40px 28px 80px;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1 { font-size: 22px; letter-spacing: -0.01em; margin-bottom: 6px; text-align: center; }
+    .note { text-align: center; color: rgba(23,27,34,.55); font-size: 13px; margin-bottom: 32px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 18px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .option {
+      background: rgba(255,255,255,.6);
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 16px;
+      padding: 16px 18px;
+      box-shadow: 0 6px 16px rgba(30,45,70,.07);
+    }
+    .option h2 { font-size: 13px; margin-bottom: 10px; }
+    .option h2 span { color: rgba(23,27,34,.45); font-weight: 500; }
+    .row { display: flex; align-items: flex-end; gap: 10px; }
+    .tile {
+      border-radius: 22.5%;
+      box-shadow: 0 1px 4px rgba(20,30,50,.14), 0 6px 14px rgba(20,30,50,.14);
+    }
+    .t88 { width: 88px; height: 88px; }
+    .t40 { width: 40px; height: 40px; }
+    .t24 { width: 24px; height: 24px; border-radius: 6px; }
+    .gap { width: 14px; }
+  </style>
+</head>
+<body>
+  <h1>Icon candidates — rounds 2–4</h1>
+  <p class="note">
+    Image-model glyphs adapted onto the dark (current app) and light fills via
+    site/tools/make-icon-tiles.py. Not deployed — open locally when exploring
+    future icon directions. Winner: 36 (droplets removed).
+  </p>
+  <div class="grid" id="grid"></div>
+  <script>
+    const CONCEPTS = [
+      'Neckband, three-quarter view', 'Neckband, side profile', 'Top-down U band',
+      'Neckband, front view', 'Neckband over a wave', 'Band forming a circle',
+      'Wave carrying a play triangle', 'Play inside a water drop',
+      'Lane rope into play', 'Wave ending in a download arrow',
+      'Download arrow, wave arrowhead', 'Download into the band',
+      'Play with sound waves', 'Podcast mic on a wave',
+      'Play squircle over a wave', 'Waveform shaped as a wave',
+      'Neckband + play between tips', 'Neckband + download between tips',
+      'Goggles with a play lens', 'Circular download with wave',
+      'Half-submerged neckband', 'Download inside a droplet',
+      'Neckband resting on a wave', 'Wave-as-band with ear tips',
+      'Play with a wave base', 'Download arrow, wavy stem',
+      'Band circle with play inside', 'Bubbles with play',
+      'Band arc over play', 'Headphone U inside a droplet',
+      'Neckband between lane ropes', 'Ladder rails into ear hooks',
+      'Play on dashed lane lines', 'Kickboard with play hole',
+      'Download diving with splash', 'Neckband mid-dive, droplets',
+      'Lane rope through band circle', 'Diving board launching play',
+      'Diver-arc download into wave', 'Band holding a waterline',
+    ]
+    const grid = document.getElementById('grid')
+    CONCEPTS.forEach((name, i) => {
+      const id = 'opt' + String(i + 1).padStart(2, '0')
+      const el = document.createElement('div')
+      el.className = 'option'
+      el.innerHTML = `
+        <h2>${i + 1} <span>— ${name}</span></h2>
+        <div class="row">
+          <img class="tile t88" src="candidates/tiles/${id}-dark.png">
+          <img class="tile t40" src="candidates/tiles/${id}-dark.png">
+          <img class="tile t24" src="candidates/tiles/${id}-dark.png">
+          <span class="gap"></span>
+          <img class="tile t88" src="candidates/tiles/${id}-light.png">
+          <img class="tile t40" src="candidates/tiles/${id}-light.png">
+          <img class="tile t24" src="candidates/tiles/${id}-light.png">
+        </div>`
+      grid.append(el)
+    })
+  </script>
+</body>
+</html>

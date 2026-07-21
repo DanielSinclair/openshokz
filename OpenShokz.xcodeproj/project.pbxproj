@@ -1,0 +1,902 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00161CBAF20248F57F70B9FB /* DiskArbitrationPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAFA312704CEBC4CAE815C8 /* DiskArbitrationPolicyTests.swift */; };
+		01314D67E889F585353102A6 /* OpenShokzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443B8F1143E7AF701CE9B20B /* OpenShokzApp.swift */; };
+		02B34178072D09060DE0DE37 /* ScrollingTitleLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988AD104DBD7E3A2BB89953C /* ScrollingTitleLogic.swift */; };
+		15CD62F47863F6ABDB50386D /* LayoutMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717F1B6E6DCF7624A1B00C4A /* LayoutMetricsTests.swift */; };
+		169E8B66DD22EEF6FD558E14 /* DeviceFileDeleterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BC316794B5E8DF8F465E90 /* DeviceFileDeleterTests.swift */; };
+		1711B37FF2926ECF1B7DA1D1 /* OpenShokz.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7990484E5B635DB7ECC2DCAC /* OpenShokz.icon */; };
+		2124841F9C8A909377B0B8BD /* OpenShokzUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E702D9E1A489FD9E2DC3402 /* OpenShokzUITests.swift */; };
+		24731ABF76C267763C05C5E9 /* DeviceTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3F5CB66A9575B1D8269D6 /* DeviceTrack.swift */; };
+		250D92E512ED215945FE85EA /* LibraryScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91175A04BD8E99DED0265BB /* LibraryScanner.swift */; };
+		2872E4689CA9F5D024E70E0A /* DiskArbitrationMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381BB5B2877C34D6831A0E08 /* DiskArbitrationMonitor.swift */; };
+		288D25F539DCAA53212D9C2C /* TrackFileNamingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB79B60AD6CC7F7FDE40805 /* TrackFileNamingTests.swift */; };
+		2EF2F229103BD205CF969F56 /* AppPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E1CCA12C06BBC230632EE6 /* AppPaths.swift */; };
+		3913F3C079F39EFE724107CB /* MediaPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46CE6F9C36CBCB05501FFDA /* MediaPipeline.swift */; };
+		3AA1CB0907454D3469F9E2B5 /* TrackMetadataBackfillTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EB97FB8F75E5DF6D70497C /* TrackMetadataBackfillTests.swift */; };
+		3EAB141B01F73D64C7C781EA /* LibraryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE701EF1225DEBACC7183A1 /* LibraryViewModelTests.swift */; };
+		436597C661ED9451AE286A93 /* DownloadServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD72E8410C65E485046814F /* DownloadServiceTests.swift */; };
+		439C1BF39C6B6627487660D9 /* VolumeContentWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1285FA37911E17B104239F71 /* VolumeContentWatcher.swift */; };
+		43B299ABB6CF19D30145F64B /* TrackMetadataBackfill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49234E2C87B1FB9F65E98BFB /* TrackMetadataBackfill.swift */; };
+		4A2B920790879854CF40BB4F /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3C0D4F57A98FC9CC20A0CF78 /* FeedKit */; };
+		4A45C2340E13997AC90C2F87 /* ScrollingTitleLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08398692088E7EC3B0819682 /* ScrollingTitleLogicTests.swift */; };
+		4EEB6029D165C8CAA94D55B8 /* ShokzVolumeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE6097F2F9A2BF876A69740 /* ShokzVolumeTests.swift */; };
+		5328FC71A8C3ACC7263EDC91 /* BundledBinariesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FCD578ABAD023B355857C3 /* BundledBinariesTests.swift */; };
+		558463076C13B68E4A6DF681 /* DeviceIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83EEB28F79030F142CD0E94 /* DeviceIO.swift */; };
+		56F99B99DADF3A8E850103B9 /* GlassBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5252192198422CCDD92B8C26 /* GlassBackground.swift */; };
+		5B76CD4C4883FBA4E4E207EC /* TrackFileNaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D71E5E9A94E3C0A550CC4D /* TrackFileNaming.swift */; };
+		5D14AF8C6905EBF02A35F72A /* PodcastResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4A00403E652AD9997B9F45 /* PodcastResolver.swift */; };
+		671FF571B3DC29DD6F84D64F /* LayoutMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0F3E24E45E2237AFD8FF6 /* LayoutMetrics.swift */; };
+		6BB71C9DC2CD595A4392FBE9 /* ShokzVolumeIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0BFA5C259C091A0CDA9CB3 /* ShokzVolumeIdentity.swift */; };
+		720C8B6FDDA36034FE1842E2 /* LibraryCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A8121CC99AA5038D052CD5 /* LibraryCacheTests.swift */; };
+		72878077B80D07E4D10B14B4 /* BundledBinaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA3CE8C91176D347D7A67A1 /* BundledBinaries.swift */; };
+		764608C9360D895371F6B835 /* SettledCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6F55134CD0E8DA66706BAC /* SettledCopy.swift */; };
+		7D665761927C551E0E1034AC /* DeviceTrack+Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB023966C2F060721E4C7BE /* DeviceTrack+Metadata.swift */; };
+		7E2A5A906DEFC380E5FC0007 /* FinderReveal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E200C7B8966155C021CB23 /* FinderReveal.swift */; };
+		7E69CFF20FBE5EB0C54B6FEC /* YouTubeKit in Frameworks */ = {isa = PBXBuildFile; productRef = C38CEF3C174C3BE75DCF4EBB /* YouTubeKit */; };
+		7FB1B6AECF8DE0A2FE66B57B /* WindowConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1095747D47A5BEF46E709AC8 /* WindowConfigurator.swift */; };
+		8E7A3F21150543CF5126EBE4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BCBF0014177697CF67A685 /* ContentView.swift */; };
+		9284ABEB2A737558D01C97DE /* AccessibilityID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D15CEB0C75CD39001AF090 /* AccessibilityID.swift */; };
+		988A2072D8ADC2B7614AF695 /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F46F556911B401264B3948B /* DownloadService.swift */; };
+		99622C4E423AEA93B5E0AFA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B31EB14BBD398B8A607239F6 /* Assets.xcassets */; };
+		9A7F9554C95D475A13DD6EAC /* ArtworkEmbedder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DC57F2490EF7A656C817A /* ArtworkEmbedder.swift */; };
+		9C1D0D73698D98226BCFCECF /* VolumeAccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D23E2588FA284B7D5BBE918 /* VolumeAccessTests.swift */; };
+		9C308DECF8D361B9EC42A71B /* ConnectionLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E56846DE230EE6EEAD335E /* ConnectionLifecycle.swift */; };
+		9D358D509C90EBBF06B70185 /* TransferServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5542756E3383A2946607A8 /* TransferServiceTests.swift */; };
+		9D814F0E17358C6FE5784E55 /* SettlementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BD09A2416A2FDD5043E2E6 /* SettlementTests.swift */; };
+		A194CC502562FE831BEDE137 /* UITestingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488E6DAF900E299BB604B179 /* UITestingSupport.swift */; };
+		A9D38852F943F0C9D4CE4C0B /* MediaURLSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00BA54A1F52E07FECD965F5 /* MediaURLSupport.swift */; };
+		B4BA23F6036B7F329F8B6649 /* DeviceHygieneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F34B5F2A47645E6768E80E /* DeviceHygieneTests.swift */; };
+		B7164FC19CE63C0BB4B352C8 /* DownloadClients.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B34AE261760989C77EE49 /* DownloadClients.swift */; };
+		BBA4CC1804917F49E23E2399 /* TransferMetadataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2055C3E356B4D08A625F35FE /* TransferMetadataTests.swift */; };
+		C3A6C27DC44F2074419FBF23 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 693BCBD286E9A7F08DCDB769 /* Sparkle */; };
+		C90144C281EDAC269216F74F /* DeviceHygiene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA94C4288A2402133C8B3EBE /* DeviceHygiene.swift */; };
+		D102284F59828916ED5BA876 /* VolumeAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAF18A0FB0E282B6A548CA1 /* VolumeAccess.swift */; };
+		D13956CDAAD84C9D1392435C /* LibraryCachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A558D17CCB731180D3598 /* LibraryCachePolicy.swift */; };
+		D4C43CB111B48AEF048C65D2 /* RemoteVideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C434B05B12AF3933313B17 /* RemoteVideoInfo.swift */; };
+		D531C511AD43AB3E470A0000 /* DeviceIOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D3AFE14FBFE692F3333997 /* DeviceIOTests.swift */; };
+		D7111A416BD45685D35802AA /* TransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D14A69C6E9658D9C938FA3 /* TransferService.swift */; };
+		D85D6028294741A51AD0E161 /* DeviceFileDeleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58358634BE22195F42CB8B44 /* DeviceFileDeleter.swift */; };
+		D86153237D1EF54A94E752A2 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581C6C823A78853BBB4CEA4 /* LibraryViewModel.swift */; };
+		DA365A84DACA53B3E405594C /* SparkleConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1CF2D546AD25770E494DAA /* SparkleConfigurationTests.swift */; };
+		E7B8321CCDD64E43DC0D381D /* TrackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD335D5083DCCFA9E1A311C5 /* TrackState.swift */; };
+		EB9678753A2CF875D8E4BC26 /* AddURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D773AFD61542A52C1757A6 /* AddURLTests.swift */; };
+		F34590B95B943EEDD37C4240 /* ShokzVolumeMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE079D68038EA7CA495F43A /* ShokzVolumeMonitor.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		11250C54B84BF4928729F51C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C978B2B46F4C0A70AF0FF4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3964A87B73C1AE508E7C35D;
+			remoteInfo = OpenShokz;
+		};
+		47E75E29A1DE9D575A4B8EB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C978B2B46F4C0A70AF0FF4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3964A87B73C1AE508E7C35D;
+			remoteInfo = OpenShokz;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		01FCD578ABAD023B355857C3 /* BundledBinariesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundledBinariesTests.swift; sourceTree = "<group>"; };
+		08398692088E7EC3B0819682 /* ScrollingTitleLogicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingTitleLogicTests.swift; sourceTree = "<group>"; };
+		1095747D47A5BEF46E709AC8 /* WindowConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowConfigurator.swift; sourceTree = "<group>"; };
+		1285FA37911E17B104239F71 /* VolumeContentWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeContentWatcher.swift; sourceTree = "<group>"; };
+		2055C3E356B4D08A625F35FE /* TransferMetadataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferMetadataTests.swift; sourceTree = "<group>"; };
+		22D3F5CB66A9575B1D8269D6 /* DeviceTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTrack.swift; sourceTree = "<group>"; };
+		29278EC1FC0D91D5DF9D1BCB /* OpenShokzTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenShokzTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		381BB5B2877C34D6831A0E08 /* DiskArbitrationMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskArbitrationMonitor.swift; sourceTree = "<group>"; };
+		3CB023966C2F060721E4C7BE /* DeviceTrack+Metadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceTrack+Metadata.swift"; sourceTree = "<group>"; };
+		3EE701EF1225DEBACC7183A1 /* LibraryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModelTests.swift; sourceTree = "<group>"; };
+		3F46F556911B401264B3948B /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
+		4074FDF51F7C4CAE09EF2222 /* OpenShokz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenShokz.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		42C434B05B12AF3933313B17 /* RemoteVideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteVideoInfo.swift; sourceTree = "<group>"; };
+		43D3AFE14FBFE692F3333997 /* DeviceIOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceIOTests.swift; sourceTree = "<group>"; };
+		43E1CCA12C06BBC230632EE6 /* AppPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPaths.swift; sourceTree = "<group>"; };
+		443B8F1143E7AF701CE9B20B /* OpenShokzApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenShokzApp.swift; sourceTree = "<group>"; };
+		488E6DAF900E299BB604B179 /* UITestingSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingSupport.swift; sourceTree = "<group>"; };
+		49234E2C87B1FB9F65E98BFB /* TrackMetadataBackfill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackMetadataBackfill.swift; sourceTree = "<group>"; };
+		49D15CEB0C75CD39001AF090 /* AccessibilityID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityID.swift; sourceTree = "<group>"; };
+		5252192198422CCDD92B8C26 /* GlassBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassBackground.swift; sourceTree = "<group>"; };
+		58358634BE22195F42CB8B44 /* DeviceFileDeleter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFileDeleter.swift; sourceTree = "<group>"; };
+		5AAFA312704CEBC4CAE815C8 /* DiskArbitrationPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskArbitrationPolicyTests.swift; sourceTree = "<group>"; };
+		639DC57F2490EF7A656C817A /* ArtworkEmbedder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkEmbedder.swift; sourceTree = "<group>"; };
+		64F34B5F2A47645E6768E80E /* DeviceHygieneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceHygieneTests.swift; sourceTree = "<group>"; };
+		69D71E5E9A94E3C0A550CC4D /* TrackFileNaming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackFileNaming.swift; sourceTree = "<group>"; };
+		6FAF18A0FB0E282B6A548CA1 /* VolumeAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeAccess.swift; sourceTree = "<group>"; };
+		717F1B6E6DCF7624A1B00C4A /* LayoutMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutMetricsTests.swift; sourceTree = "<group>"; };
+		78F0F3E24E45E2237AFD8FF6 /* LayoutMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutMetrics.swift; sourceTree = "<group>"; };
+		7990484E5B635DB7ECC2DCAC /* OpenShokz.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = OpenShokz.icon; sourceTree = "<group>"; };
+		7AD72E8410C65E485046814F /* DownloadServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadServiceTests.swift; sourceTree = "<group>"; };
+		7E702D9E1A489FD9E2DC3402 /* OpenShokzUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenShokzUITests.swift; sourceTree = "<group>"; };
+		89BD09A2416A2FDD5043E2E6 /* SettlementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementTests.swift; sourceTree = "<group>"; };
+		89EB97FB8F75E5DF6D70497C /* TrackMetadataBackfillTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackMetadataBackfillTests.swift; sourceTree = "<group>"; };
+		8FA3CE8C91176D347D7A67A1 /* BundledBinaries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundledBinaries.swift; sourceTree = "<group>"; };
+		90A8121CC99AA5038D052CD5 /* LibraryCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCacheTests.swift; sourceTree = "<group>"; };
+		9581C6C823A78853BBB4CEA4 /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
+		95D773AFD61542A52C1757A6 /* AddURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddURLTests.swift; sourceTree = "<group>"; };
+		988AD104DBD7E3A2BB89953C /* ScrollingTitleLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingTitleLogic.swift; sourceTree = "<group>"; };
+		9B3C266804DD7E81A0C5E0FA /* OpenShokz.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OpenShokz.entitlements; sourceTree = "<group>"; };
+		9D23E2588FA284B7D5BBE918 /* VolumeAccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeAccessTests.swift; sourceTree = "<group>"; };
+		9FE6097F2F9A2BF876A69740 /* ShokzVolumeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShokzVolumeTests.swift; sourceTree = "<group>"; };
+		AA1CF2D546AD25770E494DAA /* SparkleConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkleConfigurationTests.swift; sourceTree = "<group>"; };
+		AA94C4288A2402133C8B3EBE /* DeviceHygiene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceHygiene.swift; sourceTree = "<group>"; };
+		AC5542756E3383A2946607A8 /* TransferServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferServiceTests.swift; sourceTree = "<group>"; };
+		B00BA54A1F52E07FECD965F5 /* MediaURLSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaURLSupport.swift; sourceTree = "<group>"; };
+		B0E200C7B8966155C021CB23 /* FinderReveal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderReveal.swift; sourceTree = "<group>"; };
+		B22A558D17CCB731180D3598 /* LibraryCachePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCachePolicy.swift; sourceTree = "<group>"; };
+		B31EB14BBD398B8A607239F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B38B34AE261760989C77EE49 /* DownloadClients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadClients.swift; sourceTree = "<group>"; };
+		B83EEB28F79030F142CD0E94 /* DeviceIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceIO.swift; sourceTree = "<group>"; };
+		BDC4E84903560FD39FB88278 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C3BC316794B5E8DF8F465E90 /* DeviceFileDeleterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceFileDeleterTests.swift; sourceTree = "<group>"; };
+		C46CE6F9C36CBCB05501FFDA /* MediaPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPipeline.swift; sourceTree = "<group>"; };
+		C5E56846DE230EE6EEAD335E /* ConnectionLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionLifecycle.swift; sourceTree = "<group>"; };
+		CB0BFA5C259C091A0CDA9CB3 /* ShokzVolumeIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShokzVolumeIdentity.swift; sourceTree = "<group>"; };
+		D2D14A69C6E9658D9C938FA3 /* TransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferService.swift; sourceTree = "<group>"; };
+		D91175A04BD8E99DED0265BB /* LibraryScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryScanner.swift; sourceTree = "<group>"; };
+		DCF1891EC5032AA75BE5F1D3 /* OpenShokzUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenShokzUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD335D5083DCCFA9E1A311C5 /* TrackState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackState.swift; sourceTree = "<group>"; };
+		DDB79B60AD6CC7F7FDE40805 /* TrackFileNamingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackFileNamingTests.swift; sourceTree = "<group>"; };
+		DE6F55134CD0E8DA66706BAC /* SettledCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettledCopy.swift; sourceTree = "<group>"; };
+		F4BCBF0014177697CF67A685 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FE4A00403E652AD9997B9F45 /* PodcastResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastResolver.swift; sourceTree = "<group>"; };
+		FEE079D68038EA7CA495F43A /* ShokzVolumeMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShokzVolumeMonitor.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5EF6D22CDC9AD738DC3FD65F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3A6C27DC44F2074419FBF23 /* Sparkle in Frameworks */,
+				7E69CFF20FBE5EB0C54B6FEC /* YouTubeKit in Frameworks */,
+				4A2B920790879854CF40BB4F /* FeedKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		331761A81FBB35F8E1DD6D41 /* OpenShokzUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7E702D9E1A489FD9E2DC3402 /* OpenShokzUITests.swift */,
+			);
+			path = OpenShokzUITests;
+			sourceTree = "<group>";
+		};
+		64035A5B34F54AA574BC4697 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				9581C6C823A78853BBB4CEA4 /* LibraryViewModel.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		70C172010BA2691D20C4B895 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				64035A5B34F54AA574BC4697 /* Library */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		7D9CF90A636B33C3AA5CFCDB /* OpenShokz */ = {
+			isa = PBXGroup;
+			children = (
+				E128CA461DA555A83C8C8AD2 /* App */,
+				70C172010BA2691D20C4B895 /* Features */,
+				AACB161B72DAC9CC1C8FA5C2 /* Models */,
+				8B78C357F2C8C0223D556534 /* Resources */,
+				A136C796CC362EB7EC54376C /* Services */,
+				B31EB14BBD398B8A607239F6 /* Assets.xcassets */,
+				BDC4E84903560FD39FB88278 /* Info.plist */,
+				9B3C266804DD7E81A0C5E0FA /* OpenShokz.entitlements */,
+				7990484E5B635DB7ECC2DCAC /* OpenShokz.icon */,
+			);
+			path = OpenShokz;
+			sourceTree = "<group>";
+		};
+		8B78C357F2C8C0223D556534 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A136C796CC362EB7EC54376C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				43E1CCA12C06BBC230632EE6 /* AppPaths.swift */,
+				639DC57F2490EF7A656C817A /* ArtworkEmbedder.swift */,
+				8FA3CE8C91176D347D7A67A1 /* BundledBinaries.swift */,
+				C5E56846DE230EE6EEAD335E /* ConnectionLifecycle.swift */,
+				58358634BE22195F42CB8B44 /* DeviceFileDeleter.swift */,
+				AA94C4288A2402133C8B3EBE /* DeviceHygiene.swift */,
+				B83EEB28F79030F142CD0E94 /* DeviceIO.swift */,
+				381BB5B2877C34D6831A0E08 /* DiskArbitrationMonitor.swift */,
+				B38B34AE261760989C77EE49 /* DownloadClients.swift */,
+				3F46F556911B401264B3948B /* DownloadService.swift */,
+				B0E200C7B8966155C021CB23 /* FinderReveal.swift */,
+				78F0F3E24E45E2237AFD8FF6 /* LayoutMetrics.swift */,
+				B22A558D17CCB731180D3598 /* LibraryCachePolicy.swift */,
+				D91175A04BD8E99DED0265BB /* LibraryScanner.swift */,
+				C46CE6F9C36CBCB05501FFDA /* MediaPipeline.swift */,
+				B00BA54A1F52E07FECD965F5 /* MediaURLSupport.swift */,
+				FE4A00403E652AD9997B9F45 /* PodcastResolver.swift */,
+				988AD104DBD7E3A2BB89953C /* ScrollingTitleLogic.swift */,
+				DE6F55134CD0E8DA66706BAC /* SettledCopy.swift */,
+				CB0BFA5C259C091A0CDA9CB3 /* ShokzVolumeIdentity.swift */,
+				FEE079D68038EA7CA495F43A /* ShokzVolumeMonitor.swift */,
+				69D71E5E9A94E3C0A550CC4D /* TrackFileNaming.swift */,
+				49234E2C87B1FB9F65E98BFB /* TrackMetadataBackfill.swift */,
+				D2D14A69C6E9658D9C938FA3 /* TransferService.swift */,
+				6FAF18A0FB0E282B6A548CA1 /* VolumeAccess.swift */,
+				1285FA37911E17B104239F71 /* VolumeContentWatcher.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		AACB161B72DAC9CC1C8FA5C2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				22D3F5CB66A9575B1D8269D6 /* DeviceTrack.swift */,
+				3CB023966C2F060721E4C7BE /* DeviceTrack+Metadata.swift */,
+				42C434B05B12AF3933313B17 /* RemoteVideoInfo.swift */,
+				DD335D5083DCCFA9E1A311C5 /* TrackState.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B04104ACA4D0A1EDA956437F = {
+			isa = PBXGroup;
+			children = (
+				7D9CF90A636B33C3AA5CFCDB /* OpenShokz */,
+				FA6F671E20AA2C0C1F9A74D4 /* OpenShokzTests */,
+				331761A81FBB35F8E1DD6D41 /* OpenShokzUITests */,
+				CCE14102E45984D5591A20B4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CCE14102E45984D5591A20B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4074FDF51F7C4CAE09EF2222 /* OpenShokz.app */,
+				29278EC1FC0D91D5DF9D1BCB /* OpenShokzTests.xctest */,
+				DCF1891EC5032AA75BE5F1D3 /* OpenShokzUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E128CA461DA555A83C8C8AD2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				49D15CEB0C75CD39001AF090 /* AccessibilityID.swift */,
+				F4BCBF0014177697CF67A685 /* ContentView.swift */,
+				5252192198422CCDD92B8C26 /* GlassBackground.swift */,
+				443B8F1143E7AF701CE9B20B /* OpenShokzApp.swift */,
+				488E6DAF900E299BB604B179 /* UITestingSupport.swift */,
+				1095747D47A5BEF46E709AC8 /* WindowConfigurator.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		FA6F671E20AA2C0C1F9A74D4 /* OpenShokzTests */ = {
+			isa = PBXGroup;
+			children = (
+				95D773AFD61542A52C1757A6 /* AddURLTests.swift */,
+				01FCD578ABAD023B355857C3 /* BundledBinariesTests.swift */,
+				C3BC316794B5E8DF8F465E90 /* DeviceFileDeleterTests.swift */,
+				64F34B5F2A47645E6768E80E /* DeviceHygieneTests.swift */,
+				43D3AFE14FBFE692F3333997 /* DeviceIOTests.swift */,
+				5AAFA312704CEBC4CAE815C8 /* DiskArbitrationPolicyTests.swift */,
+				7AD72E8410C65E485046814F /* DownloadServiceTests.swift */,
+				717F1B6E6DCF7624A1B00C4A /* LayoutMetricsTests.swift */,
+				90A8121CC99AA5038D052CD5 /* LibraryCacheTests.swift */,
+				3EE701EF1225DEBACC7183A1 /* LibraryViewModelTests.swift */,
+				08398692088E7EC3B0819682 /* ScrollingTitleLogicTests.swift */,
+				89BD09A2416A2FDD5043E2E6 /* SettlementTests.swift */,
+				9FE6097F2F9A2BF876A69740 /* ShokzVolumeTests.swift */,
+				AA1CF2D546AD25770E494DAA /* SparkleConfigurationTests.swift */,
+				DDB79B60AD6CC7F7FDE40805 /* TrackFileNamingTests.swift */,
+				89EB97FB8F75E5DF6D70497C /* TrackMetadataBackfillTests.swift */,
+				2055C3E356B4D08A625F35FE /* TransferMetadataTests.swift */,
+				AC5542756E3383A2946607A8 /* TransferServiceTests.swift */,
+				9D23E2588FA284B7D5BBE918 /* VolumeAccessTests.swift */,
+			);
+			path = OpenShokzTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2D492DBBBAA3356C5B7ED983 /* OpenShokzTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD29340CB41DD179CAF36BF8 /* Build configuration list for PBXNativeTarget "OpenShokzTests" */;
+			buildPhases = (
+				369EE8DE68F815C0041606F4 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				35311634A28AA607DB3DE741 /* PBXTargetDependency */,
+			);
+			name = OpenShokzTests;
+			packageProductDependencies = (
+			);
+			productName = OpenShokzTests;
+			productReference = 29278EC1FC0D91D5DF9D1BCB /* OpenShokzTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DDD32E721D9CBF3F58ECBCF5 /* OpenShokzUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F45024F1ADB5F34F6B2FB99 /* Build configuration list for PBXNativeTarget "OpenShokzUITests" */;
+			buildPhases = (
+				31A66D39BBB1CFE2520BCDE3 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0D613DFE337B3515BB398DE8 /* PBXTargetDependency */,
+			);
+			name = OpenShokzUITests;
+			packageProductDependencies = (
+			);
+			productName = OpenShokzUITests;
+			productReference = DCF1891EC5032AA75BE5F1D3 /* OpenShokzUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		F3964A87B73C1AE508E7C35D /* OpenShokz */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 337A1C32FA36B51F50AAC23D /* Build configuration list for PBXNativeTarget "OpenShokz" */;
+			buildPhases = (
+				2BDE91337CBE0AF0A05DC0AB /* Ensure Bundled Binaries */,
+				218B9ACB6B22C98F0E0C34A1 /* Sources */,
+				C109FFDE78552515649FF234 /* Copy Bundled Binaries */,
+				BD90B4A1754ADBB99918137A /* Resources */,
+				5EF6D22CDC9AD738DC3FD65F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenShokz;
+			packageProductDependencies = (
+				693BCBD286E9A7F08DCDB769 /* Sparkle */,
+				C38CEF3C174C3BE75DCF4EBB /* YouTubeKit */,
+				3C0D4F57A98FC9CC20A0CF78 /* FeedKit */,
+			);
+			productName = OpenShokz;
+			productReference = 4074FDF51F7C4CAE09EF2222 /* OpenShokz.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4C978B2B46F4C0A70AF0FF4B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					DDD32E721D9CBF3F58ECBCF5 = {
+						TestTargetID = F3964A87B73C1AE508E7C35D;
+					};
+				};
+			};
+			buildConfigurationList = BDB9057D334DD30CCFA73CA6 /* Build configuration list for PBXProject "OpenShokz" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = B04104ACA4D0A1EDA956437F;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				562A9BC82607FB08F5AD5590 /* XCRemoteSwiftPackageReference "FeedKit" */,
+				220F2115068F4A6506BE13A5 /* XCRemoteSwiftPackageReference "Sparkle" */,
+				4D27D6C9B72AF17A2CAE027C /* XCRemoteSwiftPackageReference "YouTubeKit" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = CCE14102E45984D5591A20B4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F3964A87B73C1AE508E7C35D /* OpenShokz */,
+				2D492DBBBAA3356C5B7ED983 /* OpenShokzTests */,
+				DDD32E721D9CBF3F58ECBCF5 /* OpenShokzUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BD90B4A1754ADBB99918137A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99622C4E423AEA93B5E0AFA7 /* Assets.xcassets in Resources */,
+				1711B37FF2926ECF1B7DA1D1 /* OpenShokz.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2BDE91337CBE0AF0A05DC0AB /* Ensure Bundled Binaries */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Ensure Bundled Binaries";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\nSRC=\"${SRCROOT}/OpenShokz/Resources/Binaries\"\nif [ ! -x \"${SRC}/ffmpeg\" ]; then\n  echo \"error: Missing bundled binaries. Run ./scripts/fetch-binaries.sh\" >&2\n  exit 1\nfi\n";
+		};
+		C109FFDE78552515649FF234 /* Copy Bundled Binaries */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bundled Binaries";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\nSRC=\"${SRCROOT}/OpenShokz/Resources/Binaries\"\nDEST=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Binaries\"\nmkdir -p \"${DEST}\"\n/bin/cp -f \"${SRC}/ffmpeg\" \"${DEST}/ffmpeg\"\nchmod +x \"${DEST}/ffmpeg\"\ncodesign --force --sign - \"${DEST}/ffmpeg\" 2>/dev/null || true\n# Strip xattrs that break codesign (FinderInfo / FileProvider / quarantine)\nAPP_BUNDLE=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\nif [ -d \"${APP_BUNDLE}\" ]; then\n  xattr -c \"${APP_BUNDLE}\" 2>/dev/null || true\n  find \"${APP_BUNDLE}\" -exec xattr -c {} \\; 2>/dev/null || true\n  find \"${APP_BUNDLE}\" -name '._*' -delete 2>/dev/null || true\nfi\necho \"Copied bundled binaries to ${DEST}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		218B9ACB6B22C98F0E0C34A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9284ABEB2A737558D01C97DE /* AccessibilityID.swift in Sources */,
+				2EF2F229103BD205CF969F56 /* AppPaths.swift in Sources */,
+				9A7F9554C95D475A13DD6EAC /* ArtworkEmbedder.swift in Sources */,
+				72878077B80D07E4D10B14B4 /* BundledBinaries.swift in Sources */,
+				9C308DECF8D361B9EC42A71B /* ConnectionLifecycle.swift in Sources */,
+				8E7A3F21150543CF5126EBE4 /* ContentView.swift in Sources */,
+				D85D6028294741A51AD0E161 /* DeviceFileDeleter.swift in Sources */,
+				C90144C281EDAC269216F74F /* DeviceHygiene.swift in Sources */,
+				558463076C13B68E4A6DF681 /* DeviceIO.swift in Sources */,
+				7D665761927C551E0E1034AC /* DeviceTrack+Metadata.swift in Sources */,
+				24731ABF76C267763C05C5E9 /* DeviceTrack.swift in Sources */,
+				2872E4689CA9F5D024E70E0A /* DiskArbitrationMonitor.swift in Sources */,
+				B7164FC19CE63C0BB4B352C8 /* DownloadClients.swift in Sources */,
+				988A2072D8ADC2B7614AF695 /* DownloadService.swift in Sources */,
+				7E2A5A906DEFC380E5FC0007 /* FinderReveal.swift in Sources */,
+				56F99B99DADF3A8E850103B9 /* GlassBackground.swift in Sources */,
+				671FF571B3DC29DD6F84D64F /* LayoutMetrics.swift in Sources */,
+				D13956CDAAD84C9D1392435C /* LibraryCachePolicy.swift in Sources */,
+				250D92E512ED215945FE85EA /* LibraryScanner.swift in Sources */,
+				D86153237D1EF54A94E752A2 /* LibraryViewModel.swift in Sources */,
+				3913F3C079F39EFE724107CB /* MediaPipeline.swift in Sources */,
+				A9D38852F943F0C9D4CE4C0B /* MediaURLSupport.swift in Sources */,
+				01314D67E889F585353102A6 /* OpenShokzApp.swift in Sources */,
+				5D14AF8C6905EBF02A35F72A /* PodcastResolver.swift in Sources */,
+				D4C43CB111B48AEF048C65D2 /* RemoteVideoInfo.swift in Sources */,
+				02B34178072D09060DE0DE37 /* ScrollingTitleLogic.swift in Sources */,
+				764608C9360D895371F6B835 /* SettledCopy.swift in Sources */,
+				6BB71C9DC2CD595A4392FBE9 /* ShokzVolumeIdentity.swift in Sources */,
+				F34590B95B943EEDD37C4240 /* ShokzVolumeMonitor.swift in Sources */,
+				5B76CD4C4883FBA4E4E207EC /* TrackFileNaming.swift in Sources */,
+				43B299ABB6CF19D30145F64B /* TrackMetadataBackfill.swift in Sources */,
+				E7B8321CCDD64E43DC0D381D /* TrackState.swift in Sources */,
+				D7111A416BD45685D35802AA /* TransferService.swift in Sources */,
+				A194CC502562FE831BEDE137 /* UITestingSupport.swift in Sources */,
+				D102284F59828916ED5BA876 /* VolumeAccess.swift in Sources */,
+				439C1BF39C6B6627487660D9 /* VolumeContentWatcher.swift in Sources */,
+				7FB1B6AECF8DE0A2FE66B57B /* WindowConfigurator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31A66D39BBB1CFE2520BCDE3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2124841F9C8A909377B0B8BD /* OpenShokzUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		369EE8DE68F815C0041606F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB9678753A2CF875D8E4BC26 /* AddURLTests.swift in Sources */,
+				5328FC71A8C3ACC7263EDC91 /* BundledBinariesTests.swift in Sources */,
+				169E8B66DD22EEF6FD558E14 /* DeviceFileDeleterTests.swift in Sources */,
+				B4BA23F6036B7F329F8B6649 /* DeviceHygieneTests.swift in Sources */,
+				D531C511AD43AB3E470A0000 /* DeviceIOTests.swift in Sources */,
+				00161CBAF20248F57F70B9FB /* DiskArbitrationPolicyTests.swift in Sources */,
+				436597C661ED9451AE286A93 /* DownloadServiceTests.swift in Sources */,
+				15CD62F47863F6ABDB50386D /* LayoutMetricsTests.swift in Sources */,
+				720C8B6FDDA36034FE1842E2 /* LibraryCacheTests.swift in Sources */,
+				3EAB141B01F73D64C7C781EA /* LibraryViewModelTests.swift in Sources */,
+				4A45C2340E13997AC90C2F87 /* ScrollingTitleLogicTests.swift in Sources */,
+				9D814F0E17358C6FE5784E55 /* SettlementTests.swift in Sources */,
+				4EEB6029D165C8CAA94D55B8 /* ShokzVolumeTests.swift in Sources */,
+				DA365A84DACA53B3E405594C /* SparkleConfigurationTests.swift in Sources */,
+				288D25F539DCAA53212D9C2C /* TrackFileNamingTests.swift in Sources */,
+				3AA1CB0907454D3469F9E2B5 /* TrackMetadataBackfillTests.swift in Sources */,
+				BBA4CC1804917F49E23E2399 /* TransferMetadataTests.swift in Sources */,
+				9D358D509C90EBBF06B70185 /* TransferServiceTests.swift in Sources */,
+				9C1D0D73698D98226BCFCECF /* VolumeAccessTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0D613DFE337B3515BB398DE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3964A87B73C1AE508E7C35D /* OpenShokz */;
+			targetProxy = 11250C54B84BF4928729F51C /* PBXContainerItemProxy */;
+		};
+		35311634A28AA607DB3DE741 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3964A87B73C1AE508E7C35D /* OpenShokz */;
+			targetProxy = 47E75E29A1DE9D575A4B8EB1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2E2E8A4B8F7B71A9A88FD0F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.openshokz.OpenShokzUITests;
+				SDKROOT = macosx;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				TEST_TARGET_NAME = OpenShokz;
+			};
+			name = Debug;
+		};
+		463028A9F965D01F3F1A3D1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = OpenShokz;
+				CODE_SIGN_ENTITLEMENTS = OpenShokz/OpenShokz.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
+				INFOPLIST_FILE = OpenShokz/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.openshokz.OpenShokz;
+				PRODUCT_NAME = OpenShokz;
+				SDKROOT = macosx;
+				SWIFT_STRICT_CONCURRENCY = complete;
+			};
+			name = Debug;
+		};
+		6046683F0F57985D9FCFF41A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.openshokz.OpenShokzTests;
+				SDKROOT = macosx;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenShokz.app/Contents/MacOS/OpenShokz";
+			};
+			name = Debug;
+		};
+		68215C214501C51DF9D849DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A8524DC177F9862B9F07DA61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.openshokz.OpenShokzTests;
+				SDKROOT = macosx;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenShokz.app/Contents/MacOS/OpenShokz";
+			};
+			name = Release;
+		};
+		C284CE19F9268B370BC1F3E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.openshokz.OpenShokzUITests;
+				SDKROOT = macosx;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				TEST_TARGET_NAME = OpenShokz;
+			};
+			name = Release;
+		};
+		D27926C27E55D3C4583EEE97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = OpenShokz;
+				CODE_SIGN_ENTITLEMENTS = OpenShokz/OpenShokz.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
+				INFOPLIST_FILE = OpenShokz/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.openshokz.OpenShokz;
+				PRODUCT_NAME = OpenShokz;
+				SDKROOT = macosx;
+				SWIFT_STRICT_CONCURRENCY = complete;
+			};
+			name = Release;
+		};
+		DFC92A830D1BE3D90C92B139 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		337A1C32FA36B51F50AAC23D /* Build configuration list for PBXNativeTarget "OpenShokz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				463028A9F965D01F3F1A3D1F /* Debug */,
+				D27926C27E55D3C4583EEE97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4F45024F1ADB5F34F6B2FB99 /* Build configuration list for PBXNativeTarget "OpenShokzUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E2E8A4B8F7B71A9A88FD0F4 /* Debug */,
+				C284CE19F9268B370BC1F3E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BD29340CB41DD179CAF36BF8 /* Build configuration list for PBXNativeTarget "OpenShokzTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6046683F0F57985D9FCFF41A /* Debug */,
+				A8524DC177F9862B9F07DA61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BDB9057D334DD30CCFA73CA6 /* Build configuration list for PBXProject "OpenShokz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFC92A830D1BE3D90C92B139 /* Debug */,
+				68215C214501C51DF9D849DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		220F2115068F4A6506BE13A5 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.0;
+			};
+		};
+		4D27D6C9B72AF17A2CAE027C /* XCRemoteSwiftPackageReference "YouTubeKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexeichhorn/YouTubeKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
+		562A9BC82607FB08F5AD5590 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nmdias/FeedKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.1.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3C0D4F57A98FC9CC20A0CF78 /* FeedKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 562A9BC82607FB08F5AD5590 /* XCRemoteSwiftPackageReference "FeedKit" */;
+			productName = FeedKit;
+		};
+		693BCBD286E9A7F08DCDB769 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 220F2115068F4A6506BE13A5 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+		C38CEF3C174C3BE75DCF4EBB /* YouTubeKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D27D6C9B72AF17A2CAE027C /* XCRemoteSwiftPackageReference "YouTubeKit" */;
+			productName = YouTubeKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 4C978B2B46F4C0A70AF0FF4B /* Project object */;
+}

@@ -1,0 +1,955 @@
+/* OpenShokz landing — light mode, liquid glass. */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --text: #171b22;
+  --text-secondary: rgba(23, 27, 34, 0.62);
+  --text-tertiary: rgba(23, 27, 34, 0.42);
+  --card-text: rgba(23, 27, 34, 0.92);
+  --card-text-secondary: rgba(23, 27, 34, 0.55);
+}
+
+html, body { height: 100%; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  color: var(--text);
+  background: #eef1f6;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* The first screen: fills exactly one viewport so the disclaimer below it
+   sits just past the fold — one short scroll reveals it. */
+.fold {
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Both canvases anchor to the document (not the viewport) so they scroll on
+   the compositor together with the content — glass can never lag the text. */
+#bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* real height set from JS (document height) */
+  z-index: -2;
+}
+
+/* WebGPU liquid-glass layer: background + glass composited by liquid-dom. */
+#fx {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* real height set from JS (document height) */
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+html.liquid #fx { opacity: 1; }
+
+main {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 24px 24px 10px;
+  text-align: center;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header h1 { margin-top: 14px; }
+
+.icon {
+  width: 96px;
+  height: 96px;
+  border-radius: 22px;
+  box-shadow:
+    0 2px 6px rgba(20, 30, 50, 0.12),
+    0 14px 34px rgba(20, 30, 50, 0.22);
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.tagline {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: min(30em, 100%);
+  margin-top: 8px;
+}
+
+.subline {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-tertiary);
+  max-width: 100%;
+  margin-top: 3px;
+}
+
+.subline-models {
+  margin-top: 14px;
+  font-weight: 590;
+  color: var(--text-secondary);
+}
+
+.subline a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(23, 27, 34, 0.25);
+}
+
+.subline a:hover { color: var(--text); }
+
+.actions {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 16px;
+}
+
+.action-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+}
+
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 26px;
+  border-radius: 22px;
+  font-size: 14px;
+  font-weight: 590;
+  color: var(--text);
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+
+/* No transform on hover: the button is data-glass, and moving it makes the
+   WebGPU glass panel lag behind the element (a shifting white shadow). Cue the
+   hover by lightening instead — the panel stays perfectly aligned. */
+.button:hover { background: rgba(255, 255, 255, 0.62); }
+
+.badge { display: inline-flex; }
+.badge img { display: block; height: 44px; width: auto; }
+
+/* Mac App Store: not shipped yet — dim the badge and pin a corner label. */
+.badge.is-soon {
+  position: relative;
+  cursor: default;
+}
+.badge.is-soon img {
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+.soon-badge {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  /* Apple system yellow — the App Store "in review / pending" cue. */
+  color: #7a5c00;
+  background: #ffcc00;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+.soon-badge svg { display: block; }
+
+/* CSS glass — the everywhere-fallback. When the WebGPU liquid layer is live,
+   these panels go transparent and the canvas renders the glass instead. */
+[data-glass] {
+  background: rgba(255, 255, 255, 0.44);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  backdrop-filter: blur(18px) saturate(1.6);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 10px 26px rgba(30, 45, 70, 0.16);
+}
+
+html.liquid [data-glass] {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+html.liquid .button:hover { background: rgba(255, 255, 255, 0.25); }
+
+/* Homebrew one-liner: click to copy. */
+.brew {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: -11px;
+  border: none;
+  background: none;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+}
+
+/* The `$` prompt gap is the natural spacing; the tap-name code hugs the
+   copy icon directly after it. */
+.brew code { margin-right: -1px; }
+
+.brew:hover { color: var(--text-secondary); }
+
+.brew .brew-prompt { opacity: 0.5; }
+
+/* Copy → check swap on click. Both glyphs share a fixed box; the check
+   springs in as the copy icon fades out. */
+.brew .brew-icon {
+  position: relative;
+  flex: none;
+  width: 14px;
+  height: 14px;
+}
+.brew .brew-icon .ic {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.18s ease, transform 0.18s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+.brew .ic-copy { opacity: 0.55; }
+.brew:hover .ic-copy { opacity: 0.9; }
+.brew .ic-check {
+  opacity: 0;
+  transform: scale(0.4);
+  color: #1f8a4c;
+}
+.brew.copied .ic-copy { opacity: 0; transform: scale(0.4); }
+.brew.copied .ic-check { opacity: 1; transform: scale(1); }
+
+/* ---------------------------------------------------------------- hero */
+
+.hero {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 44px;
+}
+
+/* Own perspective stage, centered on the card — mirrors .card-stage so the
+   3D wobble matches the demo card exactly. */
+.howto-stage {
+  perspective: 1100px;
+  /* Above the demo card so the podcast popover (which extends past the card's
+     right edge) is never covered by it. */
+  position: relative;
+  z-index: 5;
+}
+
+/* How-to: replica of the app's connect guide. CSS glass (NOT data-glass) so
+   the whole card — glass and content — tilts together in 3D, identical to the
+   demo card. The WebGPU flat-glass layer can't rotate, so it's not used here. */
+.howto {
+  width: 292px;
+  border-radius: 24px;
+  padding: 28px 26px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(26px) saturate(1.6);
+  backdrop-filter: blur(26px) saturate(1.6);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 30px 60px rgba(30, 45, 70, 0.22);
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1);
+  will-change: transform;
+}
+.howto:hover { transition: transform 0.12s ease-out; }
+
+.devices {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.device {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2px 8px rgba(30, 45, 70, 0.08);
+}
+
+/* The exact SF Symbols the app shows (headphones, cable.connector,
+   laptopcomputer), exported as masks and tinted here. */
+.device .sfi {
+  display: block;
+  width: 26px;
+  height: 26px;
+  background: rgba(23, 27, 34, 0.72);
+  -webkit-mask: var(--sf) no-repeat center / contain;
+  mask: var(--sf) no-repeat center / contain;
+}
+
+.chev {
+  color: var(--text-tertiary);
+  font-size: 15px;
+}
+
+.howto h2 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.howto ol {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  text-align: left;
+}
+
+.howto li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.step-num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(23, 27, 34, 0.08);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+/* Podcast-link hint: hover/focus reveals a glass tooltip of supported services. */
+.tip-anchor {
+  position: relative;
+  cursor: help;
+  white-space: nowrap;
+}
+.tip-underline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  border-bottom: 1px dotted rgba(23, 27, 34, 0.18);
+}
+
+.svc-tip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  width: max-content;
+  max-width: 92vw;
+  padding: 12px 13px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.16s ease, transform 0.16s ease;
+  /* CSS-only glass — NOT data-glass: the WebGPU layer enumerates every
+     [data-glass] element at init and would paint a phantom panel for this
+     hidden tooltip. */
+  background: rgba(255, 255, 255, 0.98);
+  -webkit-backdrop-filter: blur(26px) saturate(1.7);
+  backdrop-filter: blur(26px) saturate(1.7);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 18px 40px rgba(30, 45, 70, 0.28);
+}
+/* Little pointer under the bubble. */
+.svc-tip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: inherit;
+  border-radius: 2px;
+}
+.tip-anchor:hover .svc-tip,
+.tip-anchor:focus .svc-tip,
+.tip-anchor:focus-within .svc-tip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.svc-tip-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+  margin-bottom: 4px;
+}
+.svc {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11.5px;
+  font-weight: 560;
+  color: var(--text);
+  white-space: nowrap;
+}
+/* Fixed name column → every URL starts at the same x (left-aligned). */
+.svc-name {
+  flex: none;
+  width: 116px;
+}
+.svc em {
+  margin-left: 0;
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(23, 27, 34, 0.72);
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+}
+.svc-ic {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  border-radius: 5px;
+  font-size: 9px;
+  font-style: normal;
+  line-height: 1;
+  color: #fff;
+  background: var(--c, #5b6470);
+}
+
+/* ------------------------------------------------- app card (native) */
+
+.card-stage {
+  perspective: 1100px;
+}
+
+/* Resting 3D pose; straightens + enlarges under the pointer (demo.js). */
+.app-card {
+  position: relative;
+  width: 302px;
+  height: 396px;
+  border-radius: 16px;
+  overflow: hidden;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(26px) saturate(1.6);
+  backdrop-filter: blur(26px) saturate(1.6);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 30px 60px rgba(30, 45, 70, 0.22);
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1);
+  will-change: transform;
+}
+
+.card-stage:hover .app-card { transition: transform 0.12s ease-out; }
+
+/* Click pulse — pops out then settles. Uses the `scale` property so it
+   composes with the JS-driven `transform` tilt instead of fighting it. */
+@keyframes cardPop {
+  0% { scale: 1; }
+  38% { scale: 1.05; }
+  100% { scale: 1; }
+}
+.app-card.pop,
+.howto.pop { animation: cardPop 0.34s cubic-bezier(0.2, 0.7, 0.3, 1); }
+
+/* Cursor-following sheen — glass highlight parallax. */
+.app-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    420px 300px at var(--sheen-x, 30%) var(--sheen-y, 10%),
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0) 60%
+  );
+}
+
+.titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 14px 8px;
+}
+
+.dots { display: flex; gap: 7px; }
+
+.dots i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgba(23, 27, 34, 0.16);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-name {
+  font-size: 11px;
+  font-weight: 560;
+  letter-spacing: 0.02em;
+  color: var(--card-text-secondary);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34c759;
+  box-shadow: 0 0 6px rgba(52, 199, 89, 0.7);
+}
+
+.rows {
+  list-style: none;
+  padding: 8px 6px 0;
+}
+
+.rows li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  height: 40px;
+  overflow: hidden;
+  transition: background 0.15s ease, height 0.3s ease, opacity 0.3s ease,
+    padding 0.3s ease, transform 0.3s ease;
+}
+
+.rows li.hovered { background: rgba(23, 27, 34, 0.06); }
+
+.rows li.removing {
+  height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  transform: translateX(14px);
+}
+
+.rows li.entering { animation: row-in 0.35s ease; }
+
+.rows li.downloading { height: 54px; }
+
+@keyframes row-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.thumb {
+  flex: none;
+  width: 44px;
+  height: 28px;
+  border-radius: 5px;
+  object-fit: cover;
+  background: rgba(23, 27, 34, 0.08);
+}
+
+.row-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 12.5px;
+  font-weight: 510;
+  color: var(--card-text);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.row-dur {
+  flex: none;
+  font-size: 10.5px;
+  color: var(--card-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Download-in-progress row */
+.row-progress {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.row-progress .row-title { flex: none; }
+
+.row-status {
+  font-size: 10px;
+  color: var(--card-text-secondary);
+}
+
+.progress-track {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(23, 27, 34, 0.12);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 2px;
+  background: rgba(23, 27, 34, 0.6);
+  transition: width 0.25s linear;
+}
+
+/* Add chrome: + button ↔ capsule field (mirrors the app's bottom bar). */
+.addbar {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.addbtn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--card-text);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  transition: opacity 0.2s ease;
+}
+
+.addfield {
+  position: absolute;
+  right: 0;
+  height: 36px;
+  width: 36px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: center;
+  padding: 0 40px 0 14px;
+  opacity: 0;
+  overflow: hidden;
+  transition: width 0.3s cubic-bezier(0.3, 0.8, 0.3, 1), opacity 0.2s ease;
+}
+
+.addbar.open .addfield { width: 100%; opacity: 1; }
+.addbar.open .addbtn { opacity: 0; }
+
+.addtext {
+  font-size: 11.5px;
+  color: var(--card-text);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.addtext:empty + .caret::before {
+  content: "Paste a YouTube link";
+  color: var(--card-text-secondary);
+  font-size: 11.5px;
+}
+
+.caret {
+  display: inline-flex;
+  align-items: center;
+}
+
+.addbar.open .caret::after {
+  content: "";
+  width: 1px;
+  height: 14px;
+  margin-left: 1px;
+  background: rgba(23, 27, 34, 0.75);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+.send {
+  position: absolute;
+  right: 5px;
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: none;
+  color: var(--card-text);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: grid;
+  place-items: center;
+}
+
+.send svg { width: 22px; height: 22px; }
+
+.addbar.open .send { opacity: 0.9; }
+
+/* Context menu */
+.ctxmenu {
+  position: absolute;
+  min-width: 150px;
+  padding: 5px;
+  border-radius: 9px;
+  background: rgba(250, 251, 253, 0.9);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(23, 27, 34, 0.1);
+  box-shadow: 0 12px 28px rgba(30, 45, 70, 0.22);
+  opacity: 0;
+  transform: scale(0.96);
+  transform-origin: top left;
+  transition: opacity 0.14s ease, transform 0.14s ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.ctxmenu.open { opacity: 1; transform: none; }
+
+.ctxitem {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  color: var(--card-text);
+}
+
+.ctxitem.hovered { background: rgba(23, 27, 34, 0.07); }
+
+.ctxitem.danger { color: #d93a30; }
+
+.ctxsep {
+  height: 1px;
+  margin: 4px 8px;
+  background: rgba(23, 27, 34, 0.1);
+}
+
+/* Demo cursor — ghost-mode pointer (translucent glass glyph + soft halo). */
+.democursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  pointer-events: none;
+  transform: translate(150px, 340px);
+  transition: transform 0.7s cubic-bezier(0.3, 0.1, 0.25, 1);
+}
+
+.cursor-halo {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(148, 128, 255, 0.5),
+    rgba(148, 128, 255, 0.18) 55%,
+    rgba(148, 128, 255, 0) 75%
+  );
+  filter: blur(5px);
+  animation: halo-breathe 2.6s ease-in-out infinite;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+@keyframes halo-breathe {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.12); }
+}
+
+.cursor-glyph {
+  position: relative;
+  display: block;
+  filter: drop-shadow(0 1px 3px rgba(80, 70, 160, 0.35));
+  transition: transform 0.1s ease;
+}
+
+.democursor.clicking .cursor-glyph {
+  transform: scale(0.84);
+  transform-origin: 35% 30%;
+}
+
+.democursor.clicking .cursor-halo {
+  opacity: 1;
+  transform: scale(0.85);
+}
+
+/* ---------------------------------------------------------------- footer */
+
+footer {
+  padding: 10px 24px 18px;
+  font-size: 12.5px;
+  color: var(--text-tertiary);
+  text-align: center;
+}
+
+/* Short laptop viewports: compress further so the footer stays on-screen. */
+@media (max-height: 760px) {
+  main { gap: 14px; padding-top: 14px; }
+  .icon { width: 72px; height: 72px; border-radius: 17px; }
+  h1 { font-size: 26px; }
+  .app-card { height: 372px; }
+}
+
+/* Tagline breaks after "podcasts" only on narrow screens. */
+.br-mobile { display: none; }
+
+/* -------------------------------------------------------------- mobile web */
+@media (max-width: 640px) {
+  .br-mobile { display: inline; }
+
+  /* Just the live demo — hide the connect-guide replica. */
+  .howto-stage { display: none; }
+  .hero { gap: 0; }
+
+  /* Demo-only hero on phones: the desktop DMG, the "coming soon" App Store
+     badge, and the brew one-liner all drop out. */
+  .actions,
+  .brew { display: none; }
+
+  /* Keep the trademark line to a single row. */
+  .disclaimer {
+    white-space: nowrap;
+    font-size: clamp(6px, 2.15vw, 10.5px);
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+footer a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+footer a:hover { color: var(--text); }
+
+/* Below the fold by design — a short scroll past the first screen reveals it. */
+.disclaimer {
+  width: 100%;
+  padding: 22px 24px 26px;
+  font-size: 10.5px;
+  color: rgba(23, 27, 34, 0.32);
+  max-width: 56em;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+footer span { margin: 0 6px; }
+
+@media (prefers-reduced-motion: reduce) {
+  #fx, .button, .app-card, .democursor { transition: none; }
+  .democursor { display: none; }
+}
+
+/* ------------------------------------------- easter egg: swim lane */
+
+.swim-lane {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 12px;
+  width: 104px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  background: rgba(130, 165, 220, 0.05);
+}
+
+.swim-lane.visible { opacity: 1; }
+
+/* Lane ropes: retro red/orange floats. */
+.swim-lane::before,
+.swim-lane::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(105, 125, 165, 0.5) 0 16px,
+    rgba(255, 255, 255, 0.75) 16px 22px
+  );
+  opacity: 0.4;
+}
+
+.swim-lane::before { left: 0; }
+.swim-lane::after { right: 0; }
+
+.swimmer {
+  position: absolute;
+  left: 50%;
+  margin-left: -42px;
+  width: 84px;
+  height: 96px;
+  image-rendering: pixelated;
+  will-change: transform;
+  filter: drop-shadow(0 2px 3px rgba(40, 70, 140, 0.25));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swim-lane { display: none; }
+}

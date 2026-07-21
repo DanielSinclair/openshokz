@@ -1,0 +1,40 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Build and Run",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "/usr/bin/open",
+      "runtimeArgs": [
+        "/tmp/OpenShokz-DerivedData/Build/Products/Debug/OpenShokz.app"
+      ],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Build",
+      "console": "internalConsole",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Build and Run Release",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "/usr/bin/open",
+      "runtimeArgs": [
+        "/tmp/OpenShokz-DerivedData/Build/Products/Release/OpenShokz.app"
+      ],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Build Release",
+      "console": "internalConsole",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Debug (CodeLLDB)",
+      "type": "lldb",
+      "request": "launch",
+      "program": "/tmp/OpenShokz-DerivedData/Build/Products/Debug/OpenShokz.app/Contents/MacOS/OpenShokz",
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Build",
+      "sourceLanguages": ["swift"]
+    }
+  ]
+}

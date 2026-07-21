@@ -1,0 +1,130 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Ensure Xcode Project",
+      "type": "shell",
+      "command": "if [ ! -f OpenShokz.xcodeproj/project.pbxproj ]; then xcodegen generate; fi",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared",
+        "showReuseMessage": false
+      }
+    },
+    {
+      "label": "Ensure Binaries",
+      "type": "shell",
+      "command": "if [ ! -x OpenShokz/Resources/Binaries/yt-dlp ] || [ ! -x OpenShokz/Resources/Binaries/ffmpeg ]; then ./scripts/fetch-binaries.sh; fi",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "showReuseMessage": false
+      }
+    },
+    {
+      "label": "Build",
+      "type": "shell",
+      "command": "xcodebuild -scheme OpenShokz -configuration Debug -derivedDataPath /tmp/OpenShokz-DerivedData -destination 'platform=macOS' build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOn": ["Ensure Xcode Project", "Ensure Binaries"],
+      "dependsOrder": "sequence",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        {
+          "owner": "xcodebuild",
+          "fileLocation": ["absolute"],
+          "pattern": {
+            "regexp": "^(.*):(\\d+):(\\d+):\\s+(error|warning):\\s+(.*)$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5
+          }
+        }
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true,
+        "focus": false
+      }
+    },
+    {
+      "label": "Build Release",
+      "type": "shell",
+      "command": "xcodebuild -scheme OpenShokz -configuration Release -derivedDataPath /tmp/OpenShokz-DerivedData -destination 'platform=macOS' build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOn": ["Ensure Xcode Project", "Ensure Binaries"],
+      "dependsOrder": "sequence",
+      "group": "build",
+      "problemMatcher": [
+        {
+          "owner": "xcodebuild",
+          "fileLocation": ["absolute"],
+          "pattern": {
+            "regexp": "^(.*):(\\d+):(\\d+):\\s+(error|warning):\\s+(.*)$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5
+          }
+        }
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true,
+        "focus": false
+      }
+    },
+    {
+      "label": "Build and Run",
+      "type": "shell",
+      "command": "pkill -x OpenShokz 2>/dev/null || true; open /tmp/OpenShokz-DerivedData/Build/Products/Debug/OpenShokz.app",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOn": ["Build"],
+      "dependsOrder": "sequence",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "showReuseMessage": false
+      }
+    },
+    {
+      "label": "Build and Run Release",
+      "type": "shell",
+      "command": "pkill -x OpenShokz 2>/dev/null || true; open /tmp/OpenShokz-DerivedData/Build/Products/Release/OpenShokz.app",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOn": ["Build Release"],
+      "dependsOrder": "sequence",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "showReuseMessage": false
+      }
+    }
+  ]
+}

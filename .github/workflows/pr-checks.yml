@@ -1,0 +1,62 @@
+name: PR Checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: pr-checks-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-and-test:
+    name: Lint & Test
+    runs-on: macos-15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_16.4.app/Contents/Developer || sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
+      - name: Install tools
+        run: |
+          brew install xcodegen swiftlint
+          brew list xcodegen swiftlint
+
+      - name: Fetch bundled binaries
+        run: ./scripts/fetch-binaries.sh
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: SwiftLint
+        run: swiftlint lint --strict --config .swiftlint.yml
+
+      - name: Unit tests
+        run: |
+          xcodebuild \
+            -scheme OpenShokz \
+            -configuration Debug \
+            -derivedDataPath /tmp/OpenShokz-DerivedData \
+            -destination "platform=macOS" \
+            CODE_SIGNING_ALLOWED=NO \
+            test \
+            -only-testing:OpenShokzTests
+
+      - name: UI tests
+        run: |
+          # UI tests need the app ad-hoc signed so XCTest can launch/attach.
+          # Suite uses -ui-testing / -ui-testing-connected / -ui-testing-skip-preview
+          # so no real Shokz disk or network is required on macos-15.
+          xcodebuild \
+            -scheme OpenShokz \
+            -configuration Debug \
+            -derivedDataPath /tmp/OpenShokz-DerivedData \
+            -destination "platform=macOS" \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGNING_ALLOWED=YES \
+            CODE_SIGNING_REQUIRED=NO \
+            test \
+            -only-testing:OpenShokzUITests

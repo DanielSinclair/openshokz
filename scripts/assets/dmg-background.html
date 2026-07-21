@@ -1,0 +1,27 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body {
+    width: 660px; height: 420px; overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: linear-gradient(180deg, #f2f5fa, #e3e9f2);
+    position: relative;
+  }
+  .blob { position: absolute; border-radius: 50%; filter: blur(40px); }
+  .arrow {
+    position: absolute; left: 50%; top: 172px; transform: translateX(-50%);
+    color: rgba(23, 27, 34, 0.28);
+  }
+  .hint {
+    position: absolute; left: 0; right: 0; bottom: 38px;
+    text-align: center; font-size: 14px; color: rgba(23, 27, 34, 0.45);
+  }
+</style>
+<div class="blob" style="left:-120px; top:-140px; width:420px; height:420px; background:rgba(96,156,255,.4)"></div>
+<div class="blob" style="right:-100px; top:-60px; width:340px; height:340px; background:rgba(64,199,214,.35)"></div>
+<div class="blob" style="left:180px; bottom:-180px; width:420px; height:420px; background:rgba(150,130,255,.28)"></div>
+<svg class="arrow" width="88" height="44" viewBox="0 0 88 44" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M6 22 L70 22 M52 6 L70 22 L52 38"/>
+</svg>
+<p class="hint">Drag OpenShokz into Applications</p>

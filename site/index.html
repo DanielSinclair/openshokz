@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenShokz — Download YouTube videos and podcasts to your Shokz</title>
+  <meta name="description" content="Free, open-source Mac app that downloads YouTube videos and podcasts as audio and copies them to Shokz OpenSwim, OpenSwim Pro, and Xtrainerz swimming headphones over USB.">
+  <link rel="canonical" href="https://danielsinclair.github.io/openshokz/">
+  <meta name="theme-color" content="#eef1f6">
+  <link rel="icon" type="image/png" href="assets/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="assets/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/icon-light.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenShokz">
+  <meta property="og:url" content="https://danielsinclair.github.io/openshokz/">
+  <meta property="og:title" content="OpenShokz — YouTube and podcasts on your Shokz">
+  <meta property="og:description" content="Download YouTube videos and podcasts to your Shokz swim headphones. Free and open source for macOS.">
+  <meta property="og:image" content="https://danielsinclair.github.io/openshokz/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="OpenShokz — YouTube and podcasts on your Shokz">
+  <meta name="twitter:description" content="Download YouTube videos and podcasts to your Shokz swim headphones. Free and open source for macOS.">
+  <meta name="twitter:image" content="https://danielsinclair.github.io/openshokz/assets/og.png">
+  <meta name="twitter:creator" content="@_DanielSinclair">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "OpenShokz",
+    "operatingSystem": "macOS",
+    "applicationCategory": "MultimediaApplication",
+    "description": "Download YouTube videos and podcasts as audio to Shokz OpenSwim, OpenSwim Pro, and Xtrainerz swimming headphones.",
+    "url": "https://danielsinclair.github.io/openshokz/",
+    "downloadUrl": "https://github.com/DanielSinclair/openshokz/releases/latest",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": {
+      "@type": "Person",
+      "name": "Daniel Sinclair",
+      "url": "https://danielsinclair.me"
+    }
+  }
+  </script>
+</head>
+<body>
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <canvas id="fx" aria-hidden="true"></canvas>
+
+  <div class="fold">
+  <main>
+    <header>
+      <picture>
+        <source srcset="assets/icon.png" media="(prefers-color-scheme: dark)">
+        <img class="icon" src="assets/icon-light.png" alt="" width="96" height="96">
+      </picture>
+      <h1>OpenShokz</h1>
+      <p class="tagline">Download YouTube videos and&nbsp;podcasts<br class="br-mobile"> to your&nbsp;Shokz</p>
+      <p class="subline subline-models">Supports OpenSwim, OpenSwim&nbsp;Pro &amp; Xtrainerz</p>
+      <p class="subline">Free &amp; <a href="https://github.com/DanielSinclair/openshokz">open&nbsp;source</a></p>
+    </header>
+
+    <nav class="actions" aria-label="Get OpenShokz">
+      <span class="action-col">
+        <a class="button" data-glass
+           href="https://github.com/DanielSinclair/openshokz/releases/latest"
+           title="Requires an Apple silicon Mac">
+          Download for&nbsp;Mac
+        </a>
+      </span>
+      <!-- Coming soon: not yet on the Mac App Store. -->
+      <span class="badge is-soon" title="In the name of App Review, we pray"
+            aria-label="Mac App Store — coming soon" role="img">
+        <img src="assets/mac-app-store-badge.svg" alt="" height="44">
+        <span class="soon-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="13" height="13">
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 7.5 V12 L15 14" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </span>
+    </nav>
+    <button class="brew" id="brewCmd" type="button" aria-label="Copy Homebrew install command">
+      <span class="brew-prompt" aria-hidden="true">$</span>
+      <code>brew install --cask danielsinclair/tap/openshokz</code>
+      <span class="brew-icon" aria-hidden="true">
+        <svg class="ic ic-copy" viewBox="0 0 24 24" width="14" height="14">
+          <rect x="9" y="9" width="11" height="11" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M6 15 H5 A2 2 0 0 1 3 13 V5 A2 2 0 0 1 5 3 H13 A2 2 0 0 1 15 5 V6"
+                fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <svg class="ic ic-check" viewBox="0 0 24 24" width="14" height="14">
+          <path d="M5 12.5 L10 17.5 L19 7" fill="none" stroke="currentColor"
+                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </button>
+
+    <section class="hero">
+      <div class="howto-stage">
+      <aside class="howto" aria-label="How to connect">
+        <div class="devices" aria-hidden="true">
+          <span class="device"><i class="sfi" style="--sf: url(assets/sf/headphones.png)"></i></span>
+          <span class="chev" aria-hidden="true">›</span>
+          <span class="device"><i class="sfi" style="--sf: url(assets/sf/cable-connector.png)"></i></span>
+          <span class="chev" aria-hidden="true">›</span>
+          <span class="device"><i class="sfi" style="--sf: url(assets/sf/laptopcomputer.png)"></i></span>
+        </div>
+        <h2>Connect to get started</h2>
+        <ol>
+          <li><span class="step-num">1</span>Attach the magnetic charging cable</li>
+          <li><span class="step-num">2</span>Plug the USB end into your Mac</li>
+          <li><span class="step-num">3</span>Wait for the disk to appear (e.g. OpenSwim, SWIM&nbsp;PRO)</li>
+          <li><span class="step-num">4</span><span class="step-text">Paste a YouTube or
+            <span class="tip-anchor" tabindex="0">podcast&nbsp;link<span class="tip-underline" aria-hidden="true"></span>
+              <span class="svc-tip" role="tooltip">
+                <span class="svc-tip-title">Supported links</span>
+                <span class="svc"><i class="svc-ic" style="--c:#ff0000">▶</i><span class="svc-name">YouTube</span><em>youtube.com/watch?v=ID</em></span>
+                <span class="svc"><i class="svc-ic" style="--c:#a855f7">◉</i><span class="svc-name">Apple&nbsp;Podcasts</span><em>podcasts.apple.com/podcast?i=ID</em></span>
+                <span class="svc"><i class="svc-ic" style="--c:#1db954">♫</i><span class="svc-name">Spotify</span><em>open.spotify.com/episode/ID</em></span>
+                <span class="svc"><i class="svc-ic" style="--c:#fc7e0f">◐</i><span class="svc-name">Overcast</span><em>overcast.fm/+ID</em></span>
+                <span class="svc"><i class="svc-ic" style="--c:#f43e37">●</i><span class="svc-name">Pocket&nbsp;Casts</span><em>pca.st/episode/ID</em></span>
+                <span class="svc"><i class="svc-ic" style="--c:#00aecd">◒</i><span class="svc-name">Castro</span><em>castro.fm/episode/ID</em></span>
+                <span class="svc"><i class="svc-ic" style="--c:#f55b23">◆</i><span class="svc-name">Castbox</span><em>castbox.fm/episode/ID</em></span>
+                <span class="svc"><i class="svc-ic" style="--c:#c0272d">▮</i><span class="svc-name">iHeart</span><em>iheart.com/podcast/ID</em></span>
+                <span class="svc"><i class="svc-ic" style="--c:#5b6ee1">◈</i><span class="svc-name">Player&nbsp;FM</span><em>player.fm/series/ID</em></span>
+                <span class="svc"><i class="svc-ic" style="--c:#1f8a4c">◑</i><span class="svc-name">Podbean</span><em>podbean.com/e/ID</em></span>
+                <span class="svc"><i class="svc-ic" style="--c:#e94b35">◇</i><span class="svc-name">Podcast&nbsp;Addict</span><em>podcastaddict.com/episode/ID</em></span>
+                <span class="svc"><i class="svc-ic" style="--c:#5b6470">♪</i><span class="svc-name">Direct&nbsp;file</span><em>example.com/podcast.mp3</em></span>
+              </span>
+            </span></span>
+          </li>
+        </ol>
+      </aside>
+      </div>
+
+      <div class="card-stage">
+        <div class="app-card" id="appCard" aria-label="OpenShokz app demo">
+          <div class="titlebar">
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="status"><span class="status-name">SWIM PRO</span><span class="status-dot" aria-hidden="true"></span></span>
+          </div>
+          <ul class="rows" id="rowList"></ul>
+          <div class="addbar" id="addBar">
+            <span class="addfield" id="addField" aria-hidden="true"><span class="addtext" id="addText"></span><span class="caret"></span></span>
+            <button class="send" id="sendBtn" tabindex="-1" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#232a36" opacity="0.9"/><path d="M12 16.5 L12 8 M8.5 11.5 L12 8 L15.5 11.5" stroke="#f4f6fa" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="addbtn" id="addBtn" tabindex="-1" aria-hidden="true">+</button>
+          </div>
+          <div class="ctxmenu" id="ctxMenu" aria-hidden="true">
+            <div class="ctxitem">Open on YouTube</div>
+            <div class="ctxitem">Reveal in Finder</div>
+            <div class="ctxsep"></div>
+            <div class="ctxitem danger" id="ctxDelete">Delete</div>
+          </div>
+          <div class="democursor" id="demoCursor" aria-hidden="true">
+            <span class="cursor-halo"></span>
+            <svg class="cursor-glyph" viewBox="0 0 28 28" width="26" height="26">
+              <path d="M8.5 6.5 L21.5 13 L12 21.5 Z"
+                    fill="rgba(255,255,255,0.3)"
+                    stroke="rgba(255,255,255,0.95)"
+                    stroke-width="2.4"
+                    stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      by <a href="https://x.com/_DanielSinclair">Daniel</a>
+      <span aria-hidden="true">·</span>
+      source on <a href="https://github.com/DanielSinclair/openshokz">GitHub</a>
+    </p>
+  </footer>
+  </div>
+
+  <p class="disclaimer">Not affiliated with Shokz. All trademarks are the property of their respective&nbsp;owners.</p>
+
+  <script type="module" src="glass.js"></script>
+  <script type="module" src="demo.js"></script>
+  <script type="module" src="pet.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://danielsinclair.github.io/openshokz/sitemap.xml

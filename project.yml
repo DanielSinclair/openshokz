@@ -1,0 +1,130 @@
+name: OpenShokz
+packages:
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    from: 2.6.0
+  YouTubeKit:
+    url: https://github.com/alexeichhorn/YouTubeKit
+    from: 0.4.0
+  FeedKit:
+    url: https://github.com/nmdias/FeedKit
+    from: 9.1.2
+options:
+  bundleIdPrefix: app.openshokz
+  deploymentTarget:
+    macOS: "15.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MACOSX_DEPLOYMENT_TARGET: "15.0"
+    CODE_SIGN_IDENTITY: "-"
+    CODE_SIGNING_ALLOWED: YES
+    CODE_SIGNING_REQUIRED: NO
+    ENABLE_TESTABILITY: YES
+targets:
+  OpenShokz:
+    type: application
+    platform: macOS
+    sources:
+      - path: OpenShokz
+        excludes:
+          - Resources/Binaries/**
+          - IconSource/**
+          - "**/*.md"
+    resources:
+      - path: OpenShokz/Assets.xcassets
+    dependencies:
+      - package: Sparkle
+      - package: YouTubeKit
+      - package: FeedKit
+    info:
+      path: OpenShokz/Info.plist
+      properties:
+        CFBundleDisplayName: OpenShokz
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSApplicationCategoryType: public.app-category.music
+        LSMinimumSystemVersion: "15.0"
+        NSHumanReadableCopyright: Copyright © 2026 OpenShokz
+        NSPrincipalClass: NSApplication
+        # Sparkle auto-updates
+        SUFeedURL: https://danielsinclair.github.io/openshokz/appcast.xml
+        SUPublicEDKey: inb7Bk29T7OQtdzsl/T8MSqsy1jz93iq83uts33Vfsk=
+        SUEnableAutomaticChecks: true
+        SUEnableInstallerLauncherService: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.openshokz.OpenShokz
+        PRODUCT_NAME: OpenShokz
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        ENABLE_HARDENED_RUNTIME: NO
+        ENABLE_APP_SANDBOX: YES
+        COMBINE_HIDPI_IMAGES: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: OpenShokz
+        SWIFT_STRICT_CONCURRENCY: complete
+        CODE_SIGN_ENTITLEMENTS: OpenShokz/OpenShokz.entitlements
+    scheme:
+      testTargets:
+        - OpenShokzTests
+        - OpenShokzUITests
+    preBuildScripts:
+      - name: Ensure Bundled Binaries
+        basedOnDependencyAnalysis: false
+        script: |
+          set -euo pipefail
+          SRC="${SRCROOT}/OpenShokz/Resources/Binaries"
+          if [ ! -x "${SRC}/ffmpeg" ]; then
+            echo "error: Missing bundled binaries. Run ./scripts/fetch-binaries.sh" >&2
+            exit 1
+          fi
+    postCompileScripts:
+      - name: Copy Bundled Binaries
+        basedOnDependencyAnalysis: false
+        script: |
+          set -euo pipefail
+          SRC="${SRCROOT}/OpenShokz/Resources/Binaries"
+          DEST="${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Binaries"
+          mkdir -p "${DEST}"
+          /bin/cp -f "${SRC}/ffmpeg" "${DEST}/ffmpeg"
+          chmod +x "${DEST}/ffmpeg"
+          codesign --force --sign - "${DEST}/ffmpeg" 2>/dev/null || true
+          # Strip xattrs that break codesign (FinderInfo / FileProvider / quarantine)
+          APP_BUNDLE="${TARGET_BUILD_DIR}/${WRAPPER_NAME}"
+          if [ -d "${APP_BUNDLE}" ]; then
+            xattr -c "${APP_BUNDLE}" 2>/dev/null || true
+            find "${APP_BUNDLE}" -exec xattr -c {} \; 2>/dev/null || true
+            find "${APP_BUNDLE}" -name '._*' -delete 2>/dev/null || true
+          fi
+          echo "Copied bundled binaries to ${DEST}"
+
+  OpenShokzTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: OpenShokzTests
+    dependencies:
+      - target: OpenShokz
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.openshokz.OpenShokzTests
+        GENERATE_INFOPLIST_FILE: YES
+        SWIFT_STRICT_CONCURRENCY: complete
+
+  OpenShokzUITests:
+    type: bundle.ui-testing
+    platform: macOS
+    sources:
+      - path: OpenShokzUITests
+    dependencies:
+      - target: OpenShokz
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.openshokz.OpenShokzUITests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: OpenShokz
+        SWIFT_STRICT_CONCURRENCY: complete

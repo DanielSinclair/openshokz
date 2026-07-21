@@ -1,0 +1,17 @@
+<?xml version="1.0" standalone="yes"?>
+<!-- Sparkle appcast. Regenerate per release:
+     generate_appcast --download-url-prefix <release download URL prefix> dist/
+     then copy here and deploy the site. -->
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>OpenShokz</title>
+        <item>
+            <title>1.0.0</title>
+            <pubDate>Sun, 19 Jul 2026 12:32:24 -0400</pubDate>
+            <sparkle:version>1</sparkle:version>
+            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/DanielSinclair/openshokz/releases/download/v1.0.0/OpenShokz.dmg" length="102725601" type="application/octet-stream" sparkle:edSignature="0YVXMxd/g2EGRH8PabQLvFG0yAEqPcbNVfD63Uaesp5Tum5D5COPOmF5Iy0a+pkQjh9KryEcRixejl91g3Y1DQ=="/>
+        </item>
+    </channel>
+</rss>
