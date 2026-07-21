@@ -113,7 +113,7 @@ enum ArtworkEmbedder {
         let options: [CFString: Any] = [
             kCGImageSourceCreateThumbnailFromImageAlways: true,
             kCGImageSourceThumbnailMaxPixelSize: maxCoverPixels,
-            kCGImageSourceCreateThumbnailWithTransform: true,
+            kCGImageSourceCreateThumbnailWithTransform: true
         ]
         guard let image = CGImageSourceCreateThumbnailAtIndex(source, 0, options as CFDictionary) else {
             return nil
@@ -123,7 +123,7 @@ enum ArtworkEmbedder {
             out, UTType.jpeg.identifier as CFString, 1, nil
         ) else { return nil }
         CGImageDestinationAddImage(dest, image, [
-            kCGImageDestinationLossyCompressionQuality: 0.85,
+            kCGImageDestinationLossyCompressionQuality: 0.85
         ] as CFDictionary)
         guard CGImageDestinationFinalize(dest) else { return nil }
         return out as Data

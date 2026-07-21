@@ -13,7 +13,7 @@ import Foundation
 enum DeviceHygiene {
     /// Root-level directories that are safe to remove wholesale.
     static let junkRootDirectories: Set<String> = [
-        ".Trashes", ".Spotlight-V100", ".TemporaryItems",
+        ".Trashes", ".Spotlight-V100", ".TemporaryItems"
     ]
 
     /// Junk anywhere in the tree.

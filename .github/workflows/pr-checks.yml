@@ -15,13 +15,14 @@ jobs:
     runs-on: macos-15
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode_16.4.app/Contents/Developer || sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
       - name: Install tools
         run: |
+          brew untap aws/tap 2>/dev/null || true
           brew install xcodegen swiftlint
           brew list xcodegen swiftlint
 

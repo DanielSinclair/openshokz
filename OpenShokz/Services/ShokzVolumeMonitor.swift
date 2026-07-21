@@ -73,7 +73,7 @@ final class ShokzVolumeMonitor {
             NSWorkspace.didMountNotification,
             NSWorkspace.willUnmountNotification,
             NSWorkspace.didUnmountNotification,
-            NSWorkspace.didRenameVolumeNotification,
+            NSWorkspace.didRenameVolumeNotification
         ].map { name in
             center.addObserver(forName: name, object: nil, queue: .main) { [weak self] _ in
                 Task { @MainActor in self?.rescan() }

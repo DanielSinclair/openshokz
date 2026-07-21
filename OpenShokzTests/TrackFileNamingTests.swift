@@ -4,26 +4,35 @@ import Testing
 
 @Suite("Track file naming")
 struct TrackFileNamingTests {
+    private struct NamingSample {
+        let fileName: String
+        let title: String
+        let id: String
+    }
+
     @Test("parses disk-style OpenSwim filenames")
     func parsesDiskNames() {
-        let samples: [(String, String, String)] = [
-            (
-                "Training Composer 2 [uTgqYeVxy2c].mp3",
-                "Training Composer 2",
-                "uTgqYeVxy2c"
+        let samples: [NamingSample] = [
+            NamingSample(
+                fileName: "Training Composer 2 [uTgqYeVxy2c].mp3",
+                title: "Training Composer 2",
+                id: "uTgqYeVxy2c"
             ),
-            (
-                "Personalization in the Era of LLMs - Shivam Verma, Spotify [5YSJEP0HWzM].mp3",
-                "Personalization in the Era of LLMs - Shivam Verma, Spotify",
-                "5YSJEP0HWzM"
+            NamingSample(
+                fileName: "Personalization in the Era of LLMs - Shivam Verma, Spotify [5YSJEP0HWzM].mp3",
+                title: "Personalization in the Era of LLMs - Shivam Verma, Spotify",
+                id: "5YSJEP0HWzM"
             ),
-            (
-                "State of AI in 2026： LLMs, Coding, Scaling Laws, China, Agents, GPUs, AGI ｜ Lex Fridman Podcast #490 [EV7WhVT270Q].mp3",
-                "State of AI in 2026： LLMs, Coding, Scaling Laws, China, Agents, GPUs, AGI ｜ Lex Fridman Podcast #490",
-                "EV7WhVT270Q"
+            NamingSample(
+                fileName: "State of AI in 2026： LLMs, Coding, Scaling Laws, China, Agents, GPUs, AGI ｜ Lex Fridman Podcast #490 [EV7WhVT270Q].mp3",
+                title: "State of AI in 2026： LLMs, Coding, Scaling Laws, China, Agents, GPUs, AGI ｜ Lex Fridman Podcast #490",
+                id: "EV7WhVT270Q"
             )
         ]
-        for (fileName, title, id) in samples {
+        for sample in samples {
+            let fileName = sample.fileName
+            let title = sample.title
+            let id = sample.id
             let parsed = TrackFileNaming.parse(fileName)
             #expect(parsed.title == title)
             #expect(parsed.videoID == id)

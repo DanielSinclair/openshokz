@@ -42,7 +42,11 @@ struct OpenShokzApp: App {
             try? FileManager.default.removeItem(at: url)
             try? FileManager.default.removeItem(at: URL(fileURLWithPath: url.path + "-wal"))
             try? FileManager.default.removeItem(at: URL(fileURLWithPath: url.path + "-shm"))
-            return try! ModelContainer(for: schema, configurations: [configuration])
+            do {
+                return try ModelContainer(for: schema, configurations: [configuration])
+            } catch {
+                fatalError("Failed to create ModelContainer after reset: \(error)")
+            }
         }
     }()
 

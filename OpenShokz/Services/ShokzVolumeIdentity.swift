@@ -14,7 +14,7 @@ enum ShokzVolumeIdentity {
         "OpenSwim Pro",
         "OpenSwim",
         "OpenSwim (Formerly Xtrainerz)",
-        "Xtrainerz",
+        "Xtrainerz"
     ]
 
     /// Fold volume labels for comparison: trim, uppercase, strip spaces/hyphens/underscores.

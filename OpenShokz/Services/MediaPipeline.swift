@@ -18,6 +18,14 @@ enum MediaPipelineError: LocalizedError {
     }
 }
 
+/// Resolved media source before download and transcode.
+private struct MediaSource {
+    let mediaURL: URL
+    let title: String
+    let mediaID: String
+    let artworkURL: URL?
+}
+
 /// Native replacement for the external downloader: in-process extraction
 /// (video links + podcast episode links + direct media files), URLSession
 /// downloads into container staging, then ffmpeg transcodes everything to the
@@ -87,7 +95,7 @@ actor MediaPipeline: AudioDownloadClient {
         cancelled = false
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
 
-        let source: (mediaURL: URL, title: String, mediaID: String, artworkURL: URL?)
+        let source: MediaSource
         switch LinkSupportPolicy.classify(url) {
         case .unsupported(let reason):
             throw MediaPipelineError.unsupported(reason)
@@ -108,30 +116,50 @@ actor MediaPipeline: AudioDownloadClient {
                 ?? streams.filterVideoAndAudio().lowestResolutionStream()
             guard let stream else { throw MediaPipelineError.noAudioStream }
             let metadata = try? await video.metadata
-            source = (
-                stream.url,
-                metadata?.title ?? "Video \(id)",
-                id,
-                metadata?.thumbnail?.url ?? URL(string: "https://i.ytimg.com/vi/\(id)/hqdefault.jpg")
+            source = MediaSource(
+                mediaURL: stream.url,
+                title: metadata?.title ?? "Video \(id)",
+                mediaID: id,
+                artworkURL: metadata?.thumbnail?.url ?? URL(string: "https://i.ytimg.com/vi/\(id)/hqdefault.jpg")
             )
 
         case .applePodcast(let showID, let episodeID):
             let episode = try await podcasts.resolveApplePodcast(showID: showID, episodeID: episodeID)
-            source = (episode.audioURL, episode.title, episode.mediaID, episode.artworkURL)
+            source = MediaSource(
+                mediaURL: episode.audioURL,
+                title: episode.title,
+                mediaID: episode.mediaID,
+                artworkURL: episode.artworkURL
+            )
 
         case .spotifyEpisode(let id):
             let episode = try await podcasts.resolveSpotifyEpisode(id: id)
-            source = (episode.audioURL, episode.title, episode.mediaID, episode.artworkURL)
+            source = MediaSource(
+                mediaURL: episode.audioURL,
+                title: episode.title,
+                mediaID: episode.mediaID,
+                artworkURL: episode.artworkURL
+            )
 
         case .clientEpisodePage:
             let episode = try await podcasts.resolveEpisodePage(url: url)
-            source = (episode.audioURL, episode.title, episode.mediaID, episode.artworkURL)
+            source = MediaSource(
+                mediaURL: episode.audioURL,
+                title: episode.title,
+                mediaID: episode.mediaID,
+                artworkURL: episode.artworkURL
+            )
 
         case .directMedia:
             let stem = url.deletingPathExtension().lastPathComponent
                 .replacingOccurrences(of: "-", with: " ")
                 .replacingOccurrences(of: "_", with: " ")
-            source = (url, stem.isEmpty ? "Audio" : stem, PodcastResolver.hashID(for: url), nil)
+            source = MediaSource(
+                mediaURL: url,
+                title: stem.isEmpty ? "Audio" : stem,
+                mediaID: PodcastResolver.hashID(for: url),
+                artworkURL: nil
+            )
         }
 
         // 1. Download the source media into staging (0 → 0.75).
