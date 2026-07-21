@@ -106,19 +106,19 @@ enum LinkSupportPolicy {
     /// Containers the transform pipeline accepts for direct links.
     static let mediaExtensions: Set<String> = [
         "mp3", "m4a", "aac", "flac", "wav", "ogg", "opus", "m4b",
-        "mp4", "mov", "m4v", "webm", "mkv", "avi",
+        "mp4", "mov", "m4v", "webm", "mkv", "avi"
     ]
 
     /// Podcast clients whose share pages deterministically carry the episode.
     static let episodePageHosts: Set<String> = [
         "overcast.fm", "pca.st", "castro.fm", "castbox.fm",
-        "player.fm", "podbean.com", "iheart.com", "podcastaddict.com",
+        "player.fm", "podbean.com", "iheart.com", "podcastaddict.com"
     ]
 
     private static let unsupportedHostHints: [String: String] = [
         "music.amazon.com": "Amazon Music episodes can’t be downloaded — paste the episode’s Apple Podcasts link instead.",
         "audible.com": "Audible content can’t be downloaded.",
-        "soundcloud.com": "SoundCloud links aren’t supported yet.",
+        "soundcloud.com": "SoundCloud links aren’t supported yet."
     ]
 
     static let genericUnsupportedMessage =

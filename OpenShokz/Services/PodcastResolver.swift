@@ -129,7 +129,7 @@ struct PodcastResolver: Sendable {
             #"property="og:audio(?::secure_url)?" content="([^"]+)""#,
             #"<audio[^>]+src="([^"]+)""#,
             #"<source[^>]+src="([^"]+\.mp3[^"]*)""#,
-            #""(https://[^"]+\.mp3(?:\?[^"]*)?)""#,
+            #""(https://[^"]+\.mp3(?:\?[^"]*)?)""#
         ]
         for pattern in enclosurePatterns {
             if let raw = Self.firstMatch(in: html, pattern: pattern, group: 1),
