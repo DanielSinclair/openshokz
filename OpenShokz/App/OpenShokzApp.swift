@@ -1,4 +1,5 @@
 import AppKit
+import PostHog
 import Sparkle
 import SwiftData
 import SwiftUI
@@ -13,6 +14,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 @main
 struct OpenShokzApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+
+    init() {
+        let config = PostHogConfig(
+            apiKey: "phc_yxcEC9WysLJN5XQG24Di4Ky8XKmK6KXDbqj4zWBmhpko",
+            host: "https://us.i.posthog.com"
+        )
+        config.captureApplicationLifecycleEvents = true
+        PostHogSDK.shared.setup(config)
+    }
 
     /// Widget-sized floor — also the preferred launch size.
     static let defaultWidth: CGFloat = 280

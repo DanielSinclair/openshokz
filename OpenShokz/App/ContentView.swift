@@ -1,4 +1,5 @@
 import AppKit
+import PostHog
 import SwiftData
 import SwiftUI
 
@@ -136,6 +137,9 @@ struct ContentView: View {
         .onChange(of: volume.isConnected) { wasConnected, connected in
             if connected {
                 hasSeenConnection = true
+                PostHogSDK.shared.capture("device_connected", properties: [
+                    "volume_name": volume.volumeName ?? "unknown",
+                ])
                 Task { await refreshLibrary() }
             } else {
                 library.clear()
@@ -273,6 +277,9 @@ struct ContentView: View {
             GrantAccessGuide(volumeName: volume.volumeName ?? "your Shokz") {
                 Task {
                     if await volume.requestAccessGrant() {
+                        PostHogSDK.shared.capture("device_access_granted", properties: [
+                            "volume_name": volume.volumeName ?? "unknown",
+                        ])
                         await refreshLibrary(force: true)
                     }
                 }
@@ -378,6 +385,7 @@ struct ContentView: View {
     /// Fresh session only: empty field, then optional one-shot clipboard paste.
     /// Never restores a previous draft — Esc/exit always clears.
     private func openAddBar() {
+        PostHogSDK.shared.capture("add_url_opened")
         urlField = ""
         download.clearURLDraft()
         addFieldShown = false
@@ -409,6 +417,9 @@ struct ContentView: View {
     private func submit() {
         let trimmed = urlField.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty, volume.isConnected else { return }
+        PostHogSDK.shared.capture("url_submitted", properties: [
+            "has_preview": download.preview != nil,
+        ])
         download.setURLText(trimmed)
         download.download(
             sendToDevice: true,

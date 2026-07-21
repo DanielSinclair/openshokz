@@ -9,6 +9,9 @@ packages:
   FeedKit:
     url: https://github.com/nmdias/FeedKit
     from: 9.1.2
+  PostHog:
+    url: https://github.com/PostHog/posthog-ios
+    from: 3.66.1
 options:
   bundleIdPrefix: app.openshokz
   deploymentTarget:
@@ -39,6 +42,7 @@ targets:
       - package: Sparkle
       - package: YouTubeKit
       - package: FeedKit
+      - package: PostHog
     info:
       path: OpenShokz/Info.plist
       properties:

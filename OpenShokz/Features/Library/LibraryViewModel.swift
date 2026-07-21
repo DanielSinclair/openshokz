@@ -1,6 +1,7 @@
 import AppKit
 import Foundation
 import os
+import PostHog
 import SwiftData
 
 @MainActor
@@ -188,6 +189,9 @@ final class LibraryViewModel {
         } catch {
             guard generation == refreshGeneration else { return }
             lastError = error.localizedDescription
+            PostHogSDK.shared.capture("library_read_error", properties: [
+                "error": error.localizedDescription,
+            ])
             // Keep any partial tracks already painted; never wipe to a false empty library.
         }
     }
@@ -205,6 +209,9 @@ final class LibraryViewModel {
             )
         }
 
+        PostHogSDK.shared.capture("track_deleted", properties: [
+            "track_count": selected.count,
+        ])
         selection.removeAll()
         tracks.removeAll { pathsToRemove.contains($0.url.path) }
         pendingDeletePaths.formUnion(pathsToRemove)
@@ -248,6 +255,7 @@ final class LibraryViewModel {
         ) else {
             return false
         }
+        PostHogSDK.shared.capture("track_opened_original")
         return NSWorkspace.shared.open(url)
     }
 

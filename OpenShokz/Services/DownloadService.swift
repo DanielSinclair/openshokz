@@ -1,5 +1,6 @@
 import AppKit
 import Foundation
+import PostHog
 
 @MainActor
 @Observable
@@ -137,6 +138,10 @@ final class DownloadService {
             phase: .fetchingMetadata,
             sendToDevice: sendToDevice
         )
+        PostHogSDK.shared.capture("download_started", properties: [
+            "send_to_device": sendToDevice,
+            "has_preview": preview != nil,
+        ])
 
         downloadTask?.cancel()
         downloadTask = Task { [weak self] in
@@ -163,6 +168,7 @@ final class DownloadService {
             current.phase = .cancelled
             job = current
         }
+        PostHogSDK.shared.capture("download_cancelled")
         statusMessage = "Cancelled."
     }
 
@@ -182,6 +188,7 @@ final class DownloadService {
                 lastTransferredLocalURLs = []
                 lastTransferredMediaID = urlVideoID
                 updatePhase(.completed(localURL: volumeRoot ?? url))
+                PostHogSDK.shared.capture("duplicate_track_skipped")
                 statusMessage = "Already on headphones."
                 return
             }
@@ -205,6 +212,7 @@ final class DownloadService {
                 lastTransferredLocalURLs = []
                 lastTransferredMediaID = videoID
                 updatePhase(.completed(localURL: volumeRoot ?? url))
+                PostHogSDK.shared.capture("duplicate_track_skipped")
                 statusMessage = "Already on headphones."
                 return
             }
@@ -248,6 +256,7 @@ final class DownloadService {
                     lastTransferredLocalURLs = []
                     lastTransferredMediaID = videoID
                     updatePhase(.completed(localURL: volumeRoot))
+                    PostHogSDK.shared.capture("duplicate_track_skipped")
                     statusMessage = "Already on headphones."
                     return
                 }
@@ -274,6 +283,10 @@ final class DownloadService {
                 lastTransferredLocalURLs = files
                 lastTransferredMediaID = videoID
                 updatePhase(.completed(localURL: lastCopied))
+                PostHogSDK.shared.capture("download_completed", properties: [
+                    "track_count": files.count,
+                    "sent_to_device": true,
+                ])
                 statusMessage = files.count == 1
                     ? "Saved to headphones."
                     : "Saved \(files.count) tracks to headphones."
@@ -282,6 +295,10 @@ final class DownloadService {
                 lastTransferredLocalURLs = []
                 lastTransferredMediaID = videoID
                 updatePhase(.completed(localURL: primary))
+                PostHogSDK.shared.capture("download_completed", properties: [
+                    "track_count": files.count,
+                    "sent_to_device": false,
+                ])
                 statusMessage = "Downloaded to staging folder."
             }
         } catch is CancellationError {
@@ -289,6 +306,9 @@ final class DownloadService {
             statusMessage = "Cancelled."
         } catch {
             updatePhase(.failed(message: error.localizedDescription))
+            PostHogSDK.shared.capture("download_failed", properties: [
+                "error": error.localizedDescription,
+            ])
             lastError = error.localizedDescription
         }
     }
