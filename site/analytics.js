@@ -1,7 +1,7 @@
 // PostHog web analytics — first-party source (not vendored bundle output).
 const POSTHOG_PROJECT_TOKEN = 'phc_yxcEC9WysLJN5XQG24Di4Ky8XKmK6KXDbqj4zWBmhpko'
 const POSTHOG_API_HOST = 'https://us.i.posthog.com'
-const SITE_PROJECT = 'openshokz'
+const PUBLIC_POSTHOG_PROJECT = 'openshokz'
 
 !(function (t, e) {
   var o, n, p, r
@@ -53,7 +53,7 @@ posthog.init(POSTHOG_PROJECT_TOKEN, {
   defaults: '2026-05-30',
   loaded(posthog) {
     posthog.register({
-      project: SITE_PROJECT,
+      project: PUBLIC_POSTHOG_PROJECT,
       site_url: window.location.href,
     })
   },
